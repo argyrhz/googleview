@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Τι είναι το NFC; Ο απλός οδηγός — GoogleViews</title>
+<meta name="description" content="Τι είναι η τεχνολογία NFC, πώς δουλεύει και γιατί την ξέρεις ήδη. Εξηγούμε τα πάντα σε απλά ελληνικά, χωρίς τεχνικούς όρους.">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://googleviews.gr/nfc.html">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="el_GR">
+<meta property="og:site_name" content="GoogleViews">
+<meta property="og:title" content="Τι είναι το NFC; Ο απλός οδηγός — GoogleViews">
+<meta property="og:description" content="Τι είναι η τεχνολογία NFC, πώς δουλεύει και γιατί την ξέρεις ήδη. Εξηγούμε τα πάντα σε απλά ελληνικά, χωρίς τεχνικούς όρους.">
+<meta property="og:url" content="https://googleviews.gr/nfc.html">
+<meta property="og:image" content="https://googleviews.gr/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/img/logo.webp" type="image/webp">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/mockups.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+
+</head>
+<body>
+<a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html" aria-label="GoogleViews — αρχική">
+      <picture>
+        <source srcset="assets/img/logo.webp" type="image/webp">
+        <img class="brand__mark" src="assets/img/logo.png" alt="" width="480" height="341">
+      </picture>
+      <span class="brand__name">GoogleViews</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Κύρια πλοήγηση">
+      <a class="nav__link is-active" href="nfc.html">Τι είναι το NFC</a>
+      <a class="nav__link" href="pos-leitourgei.html">Πώς λειτουργεί</a>
+      <a class="nav__link" href="proionta.html">Προϊόντα</a>
+      <a class="nav__link" href="times.html">Τιμές</a>
+      <a class="nav__link" href="index.html#epikoinonia">Επικοινωνία</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--primary btn--sm btn--nav" href="index.html#epikoinonia">Παράγγειλε τώρα</a>
+      <button class="nav__burger" type="button" aria-label="Μενού" aria-expanded="false" aria-controls="drawer">
+        <span class="burger-box"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav__drawer" id="drawer" aria-hidden="true">
+  <a class="nav__link" href="index.html">Αρχική</a>
+  <a class="nav__link is-active" href="nfc.html">Τι είναι το NFC</a>
+  <a class="nav__link" href="pos-leitourgei.html">Πώς λειτουργεί</a>
+  <a class="nav__link" href="proionta.html">Προϊόντα</a>
+  <a class="nav__link" href="times.html">Τιμές</a>
+  <a class="nav__link" href="index.html#epikoinonia">Επικοινωνία</a>
+  <a class="btn btn--primary btn--block" href="index.html#epikoinonia">Παράγγειλε τώρα</a>
+</div>
+
+<main id="main">
+<!-- ========================================================== PAGE HERO -->
+<section class="page-hero">
+  <div class="aurora aurora--soft" aria-hidden="true">
+    <div class="aurora__blob aurora__blob--bg"><div class="aurora__strip"></div></div>
+    <div class="aurora__blob aurora__blob--fg"><div class="aurora__strip"></div></div>
+  </div>
+
+  <div class="container on-top">
+    <div class="page-hero__inner">
+      <nav class="breadcrumb reveal" aria-label="Διαδρομή">
+        <a href="index.html">Αρχική</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        <span>Τι είναι το NFC</span>
+      </nav>
+
+      <span class="eyebrow eyebrow--glass reveal">
+        <span class="spark spark--pulse" aria-hidden="true"></span>
+        Ο οδηγός χωρίς τεχνικά
+      </span>
+
+      <h1 class="h-display reveal" style="--reveal-delay:60ms;margin-top:var(--s-6)">
+        Τι είναι το <span class="grad grad--anim">NFC</span>;
+      </h1>
+
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Ακούγεται σαν κάτι περίπλοκο. Δεν είναι. Το χρησιμοποιείς ήδη —
+        πιθανότατα το χρησιμοποίησες και σήμερα. Πάμε να το ξεκαθαρίσουμε
+        μια για πάντα, σε δύο λεπτά.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== THE ONE-LINER -->
+<section class="section section--tight" style="padding-top:0">
+  <div class="container">
+    <div class="answer-panel reveal">
+      <span class="answer-panel__label">Η σύντομη απάντηση</span>
+      <p class="answer-panel__text">
+        Το NFC είναι ένας τρόπος να «μιλήσουν» δύο συσκευές όταν
+        <span class="grad">ακουμπήσουν</span> η μία την άλλη. Τίποτα παραπάνω.
+      </p>
+      <p class="body-lg" style="margin-top:var(--s-5)">
+        Τα αρχικά σημαίνουν <em>Near Field Communication</em> — «επικοινωνία σε
+        κοντινό πεδίο». Δηλαδή: λειτουργεί μόνο όταν τα δύο πράγματα είναι
+        σχεδόν σε επαφή, μέσα σε <strong>3–4 εκατοστά</strong>. Αυτό είναι και
+        το μεγάλο πλεονέκτημά του.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================== YOU ALREADY USE IT -->
+<section class="section section--sunken">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal"><span class="spark" aria-hidden="true"></span> Το ξέρεις ήδη</span>
+      <h2 class="h2 reveal" style="--reveal-delay:60ms">Το χρησιμοποιείς κάθε βδομάδα</h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Αν έχεις κάνει έστω ένα από τα παρακάτω, έχεις ήδη χρησιμοποιήσει NFC.
+      </p>
+    </div>
+
+    <div class="grid grid-4" data-stagger="80">
+      <article class="card card--hover reveal center">
+        <span class="icon-tile icon-tile--blue" style="margin-inline:auto" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+        </span>
+        <h3 class="h4" style="margin-top:var(--s-5)">Ανέπαφη πληρωμή</h3>
+        <p class="small muted" style="margin-top:8px">Ακουμπάς κάρτα ή κινητό στο POS.</p>
+      </article>
+
+      <article class="card card--hover reveal center">
+        <span class="icon-tile icon-tile--green" style="margin-inline:auto" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M8 4v16M3 12h5"/></svg>
+        </span>
+        <h3 class="h4" style="margin-top:var(--s-5)">Κάρτα ξενοδοχείου</h3>
+        <p class="small muted" style="margin-top:8px">Την ακουμπάς και ανοίγει η πόρτα.</p>
+      </article>
+
+      <article class="card card--hover reveal center">
+        <span class="icon-tile icon-tile--yellow" style="margin-inline:auto" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v4a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z"/><path d="M14 7v13"/></svg>
+        </span>
+        <h3 class="h4" style="margin-top:var(--s-5)">Εισιτήριο μετρό</h3>
+        <p class="small muted" style="margin-top:8px">Το περνάς πάνω από το μηχάνημα.</p>
+      </article>
+
+      <article class="card card--hover reveal center">
+        <span class="icon-tile icon-tile--violet" style="margin-inline:auto" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg>
+        </span>
+        <h3 class="h4" style="margin-top:var(--s-5)">Κάρτα εργασίας</h3>
+        <p class="small muted" style="margin-top:8px">Χτυπάς κάρτα στην είσοδο.</p>
+      </article>
+    </div>
+
+    <p class="center body-lg reveal" style="margin-top:clamp(36px,4vw,52px);max-width:62ch;margin-inline:auto">
+      Και στις τέσσερις περιπτώσεις γίνεται <strong>ακριβώς το ίδιο πράγμα</strong>:
+      δύο συσκευές πλησιάζουν, ανταλλάσσουν μια μικρή πληροφορία και τελειώνει.
+    </p>
+  </div>
+</section>
+
+<!-- ==================================================== HOW IT WORKS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal"><span class="spark" aria-hidden="true"></span> Μέσα στην κάρτα</span>
+      <h2 class="h2 reveal" style="--reveal-delay:60ms">Τι κρύβεται στο πλαστικό</h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Αν κόβαμε μια κάρτα NFC στη μέση, θα βρίσκαμε μόνο δύο πράγματα.
+        Καμία μπαταρία, κανένα κύκλωμα με ρεύμα.
+      </p>
+    </div>
+
+    <div class="split">
+      <div class="split__visual reveal">
+        <div class="diagram">
+          <svg viewBox="0 0 420 300" role="img" aria-label="Διάγραμμα κάρτας NFC: μια κεραία από σπιράλ χαλκού τυλίγεται γύρω από ένα μικροσκοπικό τσιπ, στο κέντρο της κάρτας.">
+            <defs>
+              <linearGradient id="dg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4285F4"/>
+                <stop offset="46%" stop-color="#9B72CB"/>
+                <stop offset="100%" stop-color="#D96570"/>
+              </linearGradient>
+            </defs>
+
+            <!-- card body -->
+            <rect x="30" y="76" width="360" height="200" rx="22"
+                  fill="var(--surface)" stroke="currentColor" stroke-width="1.5" opacity=".9"/>
+
+            <!-- antenna: concentric rounded rects standing in for one long coil -->
+            <g fill="none" stroke="url(#dg)" stroke-width="3" stroke-linecap="round">
+              <rect x="48" y="94"  width="324" height="164" rx="18"/>
+              <rect x="62" y="108" width="296" height="136" rx="15"/>
+              <rect x="76" y="122" width="268" height="108" rx="12"/>
+              <rect x="90" y="136" width="240" height="80"  rx="10"/>
+            </g>
+
+            <!-- leader lines, drawn twice so they read over the coils -->
+            <g fill="none" stroke="var(--surface)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M112 48 H162 V90"/>
+              <path d="M300 48 H248 V176 H236"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".55">
+              <path d="M112 48 H162 V90"/>
+              <path d="M300 48 H248 V176 H236"/>
+            </g>
+
+            <!-- the chip -->
+            <rect x="187" y="159" width="46" height="34" rx="7" fill="url(#dg)"/>
+            <g stroke="#fff" stroke-width="1.5" opacity=".6">
+              <path d="M198 159v34M210 159v34M222 159v34"/>
+              <path d="M187 170h46M187 182h46"/>
+            </g>
+
+            <!-- callouts -->
+            <g fill="currentColor" font-family="inherit">
+              <text x="30" y="34" font-size="13" font-weight="600">Η κεραία</text>
+              <text x="30" y="52" font-size="11" opacity=".7">λεπτό σπιράλ από χαλκό</text>
+              <text x="390" y="34" font-size="13" font-weight="600" text-anchor="end">Το τσιπ</text>
+              <text x="390" y="52" font-size="11" opacity=".7" text-anchor="end">μικρότερο από κόκκο ρυζιού</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="split__copy">
+        <div class="flow">
+          <div class="flow__item flow__item--active">
+            <span class="flow__dot">1</span>
+            <div>
+              <h3 class="h3">Η κεραία</h3>
+              <p class="body-lg" style="margin-top:8px">
+                Ένα λεπτό σπιράλ από χαλκό, τυλιγμένο γύρω-γύρω μέσα στο πλαστικό.
+                Δεν το βλέπεις και δεν το νιώθεις.
+              </p>
+            </div>
+          </div>
+
+          <div class="flow__item flow__item--active">
+            <span class="flow__dot">2</span>
+            <div>
+              <h3 class="h3">Το τσιπ</h3>
+              <p class="body-lg" style="margin-top:8px">
+                Μικρότερο από κόκκο ρυζιού. Μέσα του είναι γραμμένος ένας
+                σύνδεσμος — στην περίπτωσή σου, η σελίδα αξιολόγησης της
+                επιχείρησής σου στο Google.
+              </p>
+            </div>
+          </div>
+
+          <div class="flow__item flow__item--active">
+            <span class="flow__dot">3</span>
+            <div>
+              <h3 class="h3">Το κινητό δίνει το ρεύμα</h3>
+              <p class="body-lg" style="margin-top:8px">
+                Εδώ είναι το έξυπνο κομμάτι. Το κινητό εκπέμπει ένα ασθενές
+                μαγνητικό πεδίο. Όταν η κεραία μπει μέσα σε αυτό, «ξυπνάει» και
+                τροφοδοτεί το τσιπ. Γι' αυτό η κάρτα δεν χρειάζεται ποτέ μπαταρία.
+              </p>
+            </div>
+          </div>
+
+          <div class="flow__item">
+            <span class="flow__dot">4</span>
+            <div>
+              <h3 class="h3">Ο σύνδεσμος περνάει</h3>
+              <p class="body-lg" style="margin-top:8px">
+                Το τσιπ στέλνει τον σύνδεσμο στο κινητό. Το κινητό εμφανίζει μια
+                ειδοποίηση. Ο πελάτης την πατάει και είναι ήδη στη σελίδα σου.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= LIVE DEMO -->
+<section class="section section--sunken">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal"><span class="spark" aria-hidden="true"></span> Στην πράξη</span>
+      <h2 class="h2 reveal" style="--reveal-delay:60ms">Έτσι το βλέπει ο πελάτης σου</h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Ολόκληρη η διαδικασία, από την πρώτη επαφή μέχρι τη δημοσιευμένη κριτική.
+      </p>
+    </div>
+
+    <div class="demo-stage reveal">
+      <div class="scene">
+        <div class="demo-stage__card float--slow">
+          <div class="rcard">
+        <div class="rcard__face">
+        <svg class="rcard__nfc" viewBox="0 0 100 80" aria-hidden="true">
+          <circle cx="50" cy="68" r="7.6" fill="currentColor"/>
+          <g fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round">
+            <path d="M37.4 50A22 22 0 0 1 62.6 50"/>
+            <path d="M28.2 36.9A38 38 0 0 1 71.8 36.9"/>
+            <path d="M19 23.8A54 54 0 0 1 81 23.8"/>
+          </g>
+        </svg>
+
+        <span class="rcard__g" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.28-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+
+        <span class="rcard__stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+        </span>
+
+        <p class="rcard__cta">Review us<br>on <span class="rcard__gw" aria-hidden="true"><i>G</i><i>o</i><i>o</i><i>g</i><i>l</i><i>e</i></span></p>
+        </div>
+      </div>
+        </div>
+
+        <div class="demo-stage__phone float--sm float--delay">
+          <div class="phone tilt tilt--phone">
+            <span class="phone__notch" aria-hidden="true"></span>
+            <div class="phone__screen">
+              <div class="phone__statusbar" aria-hidden="true">
+                <span>21:04</span>
+                <span class="sb-icons">
+                  <svg viewBox="0 0 24 24"><path d="M2 20h3v-6H2zm5.5 0h3V9h-3zm5.5 0h3V4h-3zm5.5 0h3V11h-3z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M3 8.5a15 15 0 0 1 18 0l-2 2.2a12 12 0 0 0-14 0zm3.5 4a10 10 0 0 1 11 0l-2 2.3a7 7 0 0 0-7 0zm3.6 4.2a5 5 0 0 1 3.8 0L12 19.5z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M4 7h13a2 2 0 0 1 2 2v.5h1.2v5H19v.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/></svg>
+                </span>
+              </div>
+              <div class="gsheet" data-simulate>
+                <div class="gsheet__bar" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                  <span>google.com/maps/… /review</span>
+                </div>
+                <div class="gsheet__biz">
+                  <span class="gsheet__avatar" aria-hidden="true">Θ</span>
+                  <div>
+                    <p class="gsheet__name">Ταβέρνα Ο Θαλασσινός</p>
+                    <p>Εστιατόριο</p>
+                  </div>
+                </div>
+                <p class="gsheet__prompt">Πώς ήταν η εμπειρία σου;</p>
+                <div class="gsheet__stars" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+                </div>
+                <div class="gsheet__input">
+                  Φοβερό φαγητό και πολύ ζεστή εξυπηρέτηση<span class="gsheet__caret"></span>
+                </div>
+                <div class="gsheet__chips" aria-hidden="true">
+                  <span class="gsheet__chip">Φαγητό</span>
+                  <span class="gsheet__chip">Εξυπηρέτηση</span>
+                  <span class="gsheet__chip">Ατμόσφαιρα</span>
+                </div>
+                <div class="gsheet__post">Δημοσίευση</div>
+              </div>
+              <span class="phone__home" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-3" data-stagger="90" style="margin-top:clamp(36px,4vw,56px)">
+      <div class="reveal">
+        <span class="badge badge--blue">00:00</span>
+        <h3 class="h4" style="margin-top:12px">Ακουμπάει</h3>
+        <p class="body-lg" style="margin-top:8px">Το πάνω μέρος του κινητού στην κάρτα. Δεν χρειάζεται να πιέσει.</p>
+      </div>
+      <div class="reveal">
+        <span class="badge badge--blue">00:01</span>
+        <h3 class="h4" style="margin-top:12px">Εμφανίζεται η ειδοποίηση</h3>
+        <p class="body-lg" style="margin-top:8px">Ένα μικρό banner με τη διεύθυνση. Το πατάει.</p>
+      </div>
+      <div class="reveal">
+        <span class="badge badge--green">00:05</span>
+        <h3 class="h4" style="margin-top:12px">Η κριτική είναι online</h3>
+        <p class="body-lg" style="margin-top:8px">Πέντε αστέρια, δύο κουβέντες, δημοσίευση.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== COMPATIBILITY -->
+<section class="section">
+  <div class="container container--narrow">
+    <div class="section-head section-head--left">
+      <span class="eyebrow reveal"><span class="spark" aria-hidden="true"></span> Συμβατότητα</span>
+      <h2 class="h2 reveal" style="--reveal-delay:60ms">Ποια κινητά το διαβάζουν;</h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Σχεδόν όλα όσα κυκλοφορούν σήμερα. Να τι ισχύει ακριβώς.
+      </p>
+    </div>
+
+    <div class="table-scroll reveal">
+      <table class="compat">
+        <thead>
+          <tr>
+            <th>Συσκευή</th>
+            <th>Διαβάζει NFC;</th>
+            <th>Τι χρειάζεται ο πελάτης</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>iPhone XS / XR<br>και νεότερα</td>
+            <td class="ok">Ναι, αυτόματα</td>
+            <td>Τίποτα. Ξεκλειδώνει την οθόνη και ακουμπάει το πάνω μέρος του κινητού στην κάρτα.</td>
+          </tr>
+          <tr>
+            <td>iPhone 7, 8, X</td>
+            <td class="ok">Ναι</td>
+            <td>Ανοίγει το «Κέντρο ελέγχου» και πατάει το εικονίδιο ανάγνωσης NFC. Μία φορά ρύθμιση.</td>
+          </tr>
+          <tr>
+            <td>Android<br>(τα περισσότερα από το 2015+)</td>
+            <td class="ok">Ναι, αυτόματα</td>
+            <td>Τίποτα, αρκεί το NFC να είναι ενεργό στις ρυθμίσεις — συνήθως είναι από το εργοστάσιο.</td>
+          </tr>
+          <tr>
+            <td>Πολύ παλιά ή οικονομικά μοντέλα</td>
+            <td class="dim">Ίσως όχι</td>
+            <td>Σκανάρει το QR code που είναι τυπωμένο δίπλα στο σύμβολο NFC, σε κάθε προϊόν μας.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box reveal" style="margin-top:var(--s-7)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p class="small">
+        Στα iPhone η κεραία NFC βρίσκεται στο <strong>πάνω μέρος</strong> της
+        συσκευής, κοντά στις κάμερες. Στα Android είναι συνήθως στο
+        <strong>κέντρο της πλάτης</strong>. Αν δεν διαβάσει με την πρώτη,
+        αρκεί να μετακινήσει λίγο το κινητό.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== MYTHS / SAFETY -->
+<section class="section section--sunken">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal"><span class="spark" aria-hidden="true"></span> Ξεκαθαρίζουμε</span>
+      <h2 class="h2 reveal" style="--reveal-delay:60ms">Τι <span class="grad">δεν</span> είναι το NFC</h2>
+      <p class="lead reveal" style="--reveal-delay:120ms">
+        Οι τέσσερις παρανοήσεις που ακούμε συνέχεια — και γιατί δεν ισχύουν.
+      </p>
+    </div>
+
+    <div class="grid grid-2" data-stagger="90">
+      <article class="card card--hover reveal">
+        <div class="row" style="align-items:flex-start;gap:14px">
+          <span class="icon-tile icon-tile--red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </span>
+          <div>
+            <h3 class="h4">«Θα με παρακολουθεί»</h3>
+            <p class="body-lg" style="margin-top:8px">
+              Δεν μπορεί. Η κάρτα δεν έχει ρεύμα, δεν έχει σύνδεση στο internet
+              και δεν έχει μνήμη να αποθηκεύσει κάτι. Το μόνο που κάνει είναι να
+              δίνει έναν σύνδεσμο — τον ίδιο, σε όλους, κάθε φορά.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--hover reveal">
+        <div class="row" style="align-items:flex-start;gap:14px">
+          <span class="icon-tile icon-tile--red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </span>
+          <div>
+            <h3 class="h4">«Είναι σαν το Bluetooth»</h3>
+            <p class="body-lg" style="margin-top:8px">
+              Όχι. Το Bluetooth φτάνει δεκάδες μέτρα και θέλει σύζευξη, κωδικούς
+              και μπαταρία. Το NFC δουλεύει μόνο σε <strong>3–4 εκατοστά</strong>
+              και χωρίς καμία ρύθμιση. Δεν συνδέεσαι — απλώς ακουμπάς.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--hover reveal">
+        <div class="row" style="align-items:flex-start;gap:14px">
+          <span class="icon-tile icon-tile--red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </span>
+          <div>
+            <h3 class="h4">«Θα χρειαστώ internet στο μαγαζί»</h3>
+            <p class="body-lg" style="margin-top:8px">
+              Όχι από εσένα. Η μεταφορά του συνδέσμου γίνεται χωρίς δίκτυο.
+              Ο πελάτης χρησιμοποιεί τα δικά του δεδομένα μόνο για να ανοίξει
+              τη σελίδα του Google — όπως θα έκανε ούτως ή άλλως.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card card--hover reveal">
+        <div class="row" style="align-items:flex-start;gap:14px">
+          <span class="icon-tile icon-tile--red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </span>
+          <div>
+            <h3 class="h4">«Θα χαλάσει σε δύο μήνες»</h3>
+            <p class="body-lg" style="margin-top:8px">
+              Δεν έχει κινούμενα μέρη ούτε μπαταρία να τελειώσει. Τα τσιπ NFC
+              είναι σχεδιασμένα για εκατομμύρια αναγνώσεις. Η κάρτα θα φθαρεί
+              πολύ πριν σταματήσει να δουλεύει το τσιπ.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ -->
+<section class="section">
+  <div class="container container--narrow">
+    <div class="section-head">
+      <span class="eyebrow reveal"><span class="spark" aria-hidden="true"></span> Απορίες</span>
+      <h2 class="h2 reveal" style="--reveal-delay:60ms">Τα ψιλά γράμματα, χωρίς ψιλά γράμματα</h2>
+    </div>
+
+    <div class="faq reveal" data-single>
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          Δουλεύει μέσα από θήκη κινητού;
+          <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq__a"><div>
+          <p>Ναι, στις συνηθισμένες θήκες από σιλικόνη, πλαστικό ή δέρμα. Μόνο οι πολύ χοντρές μεταλλικές θήκες ή τα μαγνητικά πορτοφόλια μπορεί να μπλοκάρουν το σήμα.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          Χρειάζεται ο πελάτης να ξεκλειδώσει το κινητό;
+          <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq__a"><div>
+          <p>Ναι — η οθόνη πρέπει να είναι ανοιχτή και ξεκλείδωτη. Είναι δικλείδα ασφαλείας του λειτουργικού, ώστε να μην ανοίγουν σύνδεσμοι εν αγνοία του χρήστη.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          Μπορεί κάποιος να αλλάξει τον σύνδεσμο της κάρτας μου;
+          <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq__a"><div>
+          <p>Κλειδώνουμε το τσιπ πριν σου το στείλουμε, οπότε ο σύνδεσμος δεν αλλάζει από άλλον. Αν χρειαστεί εσύ να τον αλλάξεις αργότερα, το κάνουμε εμείς.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          Επηρεάζει τις τραπεζικές κάρτες αν τα βάλω μαζί;
+          <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq__a"><div>
+          <p>Δεν τις βλάπτει. Μπορεί όμως, αν βρίσκονται κολλητά στο ίδιο πορτοφόλι, το κινητό ή το POS να μπερδευτεί για το ποια κάρτα να διαβάσει. Καλύτερα να μένουν χωριστά.</p>
+        </div></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" type="button" aria-expanded="false">
+          Πόσο μακριά πιάνει;
+          <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq__a"><div>
+          <p>Περίπου 3–4 εκατοστά. Στην πράξη πρέπει σχεδόν να ακουμπήσουν. Αυτός ο περιορισμός είναι σκόπιμος — γι' αυτό το NFC θεωρείται ασφαλές και χρησιμοποιείται στις πληρωμές.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CTA -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <div class="cta-panel__aura" aria-hidden="true"></div>
+      <div class="cta-panel__inner">
+        <span class="badge badge--soft" style="background:rgba(255,255,255,.18);color:#fff">
+          <span class="spark spark--sm spark--flat" aria-hidden="true"></span> Έτοιμος;
+        </span>
+        <h2 class="h1" style="margin-top:var(--s-6);color:#fff">
+          Τώρα ξέρεις τι είναι.<br>Πάμε να το βάλουμε στο τραπέζι σου.
+        </h2>
+        <p class="lead" style="margin-top:var(--s-6);color:rgba(255,255,255,.9);max-width:58ch;margin-inline:auto">
+          Στήνουμε την κάρτα με τον σύνδεσμο της δικής σου επιχείρησης και σου
+          τη στέλνουμε έτοιμη προς χρήση.
+        </p>
+        <div class="row row-wrap jcenter" style="margin-top:var(--s-8);gap:14px">
+          <a class="btn btn--lg" href="index.html#epikoinonia" style="background:#fff;color:#1F1F1F">
+            Παράγγειλε τώρα
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn--lg" href="pos-leitourgei.html" style="color:#fff;border:1px solid rgba(255,255,255,.45)">
+            Δες πώς λειτουργεί
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="GoogleViews — αρχική">
+      <picture>
+        <source srcset="assets/img/logo.webp" type="image/webp">
+        <img class="brand__mark" src="assets/img/logo.png" alt="" width="480" height="341">
+      </picture>
+          <span class="brand__name">GoogleViews</span>
+        </a>
+        <p class="body-lg" style="margin-top:var(--s-5);max-width:42ch">
+          Έξυπνες κάρτες NFC που βοηθούν τις ελληνικές επιχειρήσεις να μαζεύουν
+          περισσότερες κριτικές στο Google — με ένα άγγιγμα.
+        </p>
+        <div class="row" style="margin-top:var(--s-6);gap:10px">
+          <a class="btn btn--tonal btn--sm" href="index.html#epikoinonia">Παράγγειλε τώρα</a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Προϊόν</h2>
+        <div class="footer__links">
+          <a href="nfc.html">Τι είναι το NFC</a>
+          <a href="pos-leitourgei.html">Πώς λειτουργεί</a>
+          <a href="proionta.html">Προϊόντα</a>
+          <a href="times.html">Τιμές</a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Εταιρεία</h2>
+        <div class="footer__links">
+          <a href="index.html#epikoinonia">Επικοινωνία</a>
+          <a href="index.html#faq">Συχνές ερωτήσεις</a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="footer__h">Επικοινωνία</h2>
+        <div class="footer__links">
+          <a href="mailto:info@googleviews.gr">info@googleviews.gr</a>
+          <a href="tel:+306900000000">+30 690 000 0000</a>
+          <span class="dim small">Αποστολή σε όλη την Ελλάδα</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© <span data-year>2026</span> GoogleViews. Με επιφύλαξη παντός δικαιώματος.</p>
+      <p class="footer__legal">
+        Το GoogleViews είναι ανεξάρτητη επιχείρηση και δεν σχετίζεται, δεν
+        συνεργάζεται και δεν υποστηρίζεται από την Google LLC. Τα «Google»,
+        «Google Maps» και τα σχετικά σήματα ανήκουν στην Google LLC.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
