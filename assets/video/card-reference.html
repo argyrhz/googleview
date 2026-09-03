@@ -1,0 +1,1927 @@
+<!DOCTYPE html><html lang="el"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>/* ============================================================================
+   GoogleViews — Design System
+   Built on Google Gemini's production design tokens (gem-sys) + Material 3
+   Expressive. Colour, shape, motion and elevation values below are the real
+   ones, not approximations.
+   ========================================================================= */
+
+/* ---------------------------------------------------------------- 1. TOKENS */
+:root{
+  /* --- Google core brand ------------------------------------------------ */
+  --g-blue:#4285F4;
+  --g-red:#EA4335;
+  --g-yellow:#FBBC04;
+  --g-green:#34A853;
+
+  /* --- Gemini brand (2025 spark refresh) -------------------------------- */
+  --gem-blue:#3186FF;
+  --gem-red:#FF4641;
+  --gem-yellow:#FFCC00;
+  --gem-green:#0EBC5F;
+  --gem-violet:#9B72CB;
+  --gem-rose:#D96570;
+
+  /* --- Signature gradients (verbatim from Gemini's CSS) ----------------- */
+  --gradient-gemini:linear-gradient(72.83deg,#4285F4 11.63%,#9B72CB 40.43%,#D96570 68.07%);
+  /* horizontal variant, for text and wide fills */
+  --gradient-gemini-h:linear-gradient(90deg,#4285F4 0%,#9B72CB 46%,#D96570 100%);
+  /* softened aurora wash */
+  --gradient-aurora:linear-gradient(90deg,#4F87ED 0%,#9476C5 33.53%,#BC688E 67.74%,#D6645D 100%);
+  /* the current marketing blue ramp */
+  --gradient-blue:linear-gradient(89.58deg,#3186FF .28%,#346BF0 44.45%,#4EA0FF 99.55%);
+  /* violet reach, for accents */
+  --gradient-violet:linear-gradient(90deg,#217BFE 0%,#2E96FF 52%,#AC87EB 98%);
+  /* Google's four brand colours */
+  --gradient-google:linear-gradient(101deg,#4285F4 0%,#34A853 34%,#FBBC04 67%,#EA4335 100%);
+  --gradient-sheen:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.85) 50%,transparent 80%);
+
+  /* --- Surfaces: Gemini's tonal ramp, light ----------------------------- */
+  --bg:#FFFFFF;
+  --surface:#FFFFFF;
+  --surface-1:#F8FAFD;        /* container-low   */
+  --surface-2:#F0F4F9;        /* container       */
+  --surface-3:#E9EEF6;        /* container-high  */
+  --surface-4:#DDE3EA;        /* container-highest */
+
+  /* The page is white end to end. Alternating sections keep their rhythm with
+     a whisper of brand colour instead of a grey band, and depth now comes from
+     card lift rather than from a darker backdrop. */
+  --bg-sunken:#FFFFFF;
+  /* Centred so it reaches zero at both edges — a band with hard seams would
+     just be the grey stripe again in a different colour. */
+  --section-alt:
+    radial-gradient(125% 92% at 50% 50%,
+      rgba(66,133,244,.062) 0%,
+      rgba(155,114,203,.038) 40%,
+      rgba(255,255,255,0) 76%),
+    #FFFFFF;
+  --shadow-card:0 1px 2px rgba(31,31,31,.05),0 4px 14px -4px rgba(31,31,31,.10);
+  --shadow-card-hover:0 2px 4px rgba(31,31,31,.05),0 14px 34px -10px rgba(31,31,31,.18);
+  --border:#E1E3E1;           /* outline-low     */
+  --border-strong:#C4C7C5;    /* outline-variant */
+  --outline:#747775;
+  --text:#1F1F1F;             /* on-surface      */
+  --text-2:#444746;           /* on-surface-variant */
+  --text-3:#727676;           /* on-surface-low  */
+  --text-inv:#FFFFFF;
+  --primary:#0B57D0;
+  --primary-container:#D3E3FD;
+  --on-primary-container:#0842A0;
+  --tertiary:#146C2E;
+  --tertiary-container:#C4EED0;
+  --surface-accent:#9DD2FF;   /* the bottom glow tint */
+
+  /* --- Glass ------------------------------------------------------------ */
+  --glass-bg:rgba(255,255,255,.60);
+  --glass-bg-strong:rgba(255,255,255,.82);
+  --glass-border:rgba(255,255,255,.9);
+  --glass-blur:saturate(180%) blur(26px);
+  --glass-blur-light:saturate(160%) blur(8px);
+
+  /* --- Elevation --------------------------------------------------------
+     Gemini leans on the tonal ramp, not shadow. These stay deliberately
+     restrained; anything heavier stops reading as Google.                  */
+  --e1:0 1px 2px rgba(31,31,31,.05),0 1px 3px rgba(31,31,31,.04);
+  --e2:0 1px 2px rgba(31,31,31,.05),0 2px 6px rgba(31,31,31,.05);
+  --e3:0 2px 4px rgba(31,31,31,.05),0 6px 14px -4px rgba(31,31,31,.08);
+  --e4:0 2px 6px rgba(31,31,31,.05),0 14px 32px -10px rgba(31,31,31,.14);
+  --e5:0 4px 10px rgba(31,31,31,.06),0 28px 64px -20px rgba(31,31,31,.22);
+
+  /* --- Shape: M3 corner scale ------------------------------------------- */
+  --r-xs:4px;
+  --r-sm:8px;
+  --r-md:12px;
+  --r-lg:16px;
+  --r-lg-inc:20px;
+  --r-xl:28px;
+  --r-xl-inc:32px;
+  --r-2xl:48px;
+  --r-full:9999px;
+
+  /* --- Spacing: gem-sys scale, extended for page layout ----------------- */
+  --s-1:4px;  --s-2:8px;  --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-7:28px; --s-8:40px; --s-9:56px; --s-10:72px;
+  --s-11:96px; --s-12:128px;
+
+  /* --- Motion: M3 easing + Expressive spring conversions ---------------- */
+  --ease-emph:cubic-bezier(.2,0,0,1);
+  --ease-emph-dec:cubic-bezier(.05,.7,.1,1);
+  --ease-emph-acc:cubic-bezier(.3,0,.8,.15);
+  --ease-standard:cubic-bezier(.2,0,0,1);
+  --ease-standard-dec:cubic-bezier(0,0,0,1);
+  /* Expressive springs — spatial overshoots, effects never do */
+  --spring-spatial:cubic-bezier(.38,1.21,.22,1);        /* 500ms */
+  --spring-spatial-fast:cubic-bezier(.42,1.67,.21,.90); /* 350ms */
+  --spring-effects:cubic-bezier(.34,.80,.34,1);         /* 200ms */
+
+  --d-short:150ms; --d-fast:200ms; --d-base:350ms;
+  --d-med:500ms;   --d-slow:650ms; --d-long:900ms;
+
+  /* --- Type ------------------------------------------------------------- */
+  --font:"Google Sans Text","Google Sans",Inter,"Roboto Flex",Roboto,system-ui,sans-serif;
+  --font-display:"Google Sans","Google Sans Display",Inter,"Roboto Flex",Roboto,system-ui,sans-serif;
+
+  --nav-h:72px;
+  --container:1200px;
+}
+
+/* ------------------------------------------------------------- 2. RESET */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--nav-h) + 24px);
+}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  font-size:17px;
+  line-height:1.7;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  transition:background var(--d-base) var(--ease-standard),color var(--d-base) var(--ease-standard);
+}
+img,svg,video,canvas{display:block;max-width:100%;height:auto}
+button,input,select,textarea{font:inherit;color:inherit;background:none;border:none}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+:focus-visible{outline:3px solid var(--g-blue);outline-offset:3px;border-radius:6px}
+::selection{background:rgba(66,133,244,.22)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important;
+  }
+}
+
+/* --------------------------------------------------------- 3. TYPOGRAPHY
+   Gemini's display type is set surprisingly light (wght 280–360) and tight.
+   Mapped onto Inter: 500 at display sizes, 600 for section headings.       */
+h1,h2,h3,h4,h5{
+  font-family:var(--font-display);
+  font-weight:600;
+  line-height:1.16;
+  letter-spacing:-.022em;
+  color:var(--text);
+  text-wrap:balance;
+}
+.h-display{
+  font-size:clamp(2.4rem,5.4vw,3.9rem);
+  line-height:1.06;
+  letter-spacing:-.036em;
+  font-weight:500;
+}
+.h1{font-size:clamp(2.05rem,4.4vw,3.3rem);letter-spacing:-.03em;font-weight:500;line-height:1.1}
+.h2{font-size:clamp(1.75rem,3.2vw,2.6rem);letter-spacing:-.028em;font-weight:500;line-height:1.14}
+.h3{font-size:clamp(1.28rem,2vw,1.6rem);letter-spacing:-.02em;line-height:1.28;font-weight:600}
+.h4{font-size:1.12rem;letter-spacing:-.012em;line-height:1.4;font-weight:600}
+
+.lead{
+  font-size:clamp(1.05rem,1.5vw,1.24rem);
+  line-height:1.66;
+  color:var(--text-2);
+  letter-spacing:-.005em;
+  text-wrap:pretty;
+}
+.body-lg{font-size:1.05rem;line-height:1.72;color:var(--text-2);text-wrap:pretty}
+.muted{color:var(--text-2)}
+.dim{color:var(--text-3)}
+.small{font-size:.9rem;line-height:1.6}
+.xsmall{font-size:.795rem;line-height:1.55}
+.center{text-align:center}
+.nowrap{white-space:nowrap}
+strong,b{font-weight:600;color:var(--text)}
+
+/* Gradient text. The negative margin-block / positive padding-block pair is
+   Gemini's own fix for background-clip:text cropping ascenders+descenders. */
+.grad,.grad-g,.grad-b{
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  margin-block:-.15em;
+  padding-block:.15em;
+  padding-inline-end:2px;
+  /* Kept inline (not inline-block) so trailing punctuation can't be orphaned
+     onto the next line; clone keeps the full gradient on each wrapped fragment. */
+  display:inline;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+.grad{background-image:var(--gradient-gemini-h)}
+.grad-g{background-image:var(--gradient-google)}
+.grad-b{background-image:var(--gradient-blue)}
+
+/* Slowly travelling gradient — Gemini's animated brand text, 4.3s linear */
+.grad--anim{
+  background-size:200% auto;
+  animation:animateGradient 4.3s linear infinite;
+}
+@keyframes animateGradient{
+  from{background-position:200% center}
+  to{background-position:0 center}
+}
+
+/* ------------------------------------------------------------ 4. LAYOUT */
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:clamp(20px,5vw,40px);
+}
+.container--narrow{max-width:880px}
+.container--wide{max-width:1380px}
+
+.section{padding-block:clamp(64px,9vw,124px);position:relative}
+.section--tight{padding-block:clamp(48px,6vw,80px)}
+.section--sunken{background:var(--section-alt)}
+
+.stack>*+*{margin-top:var(--s-4)}
+.stack-sm>*+*{margin-top:var(--s-2)}
+.stack-lg>*+*{margin-top:var(--s-6)}
+
+.grid{display:grid;gap:clamp(16px,2.2vw,28px)}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:960px){
+  .grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:620px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:minmax(0,1fr)}
+}
+
+.row{display:flex;align-items:center;gap:var(--s-4)}
+.row-wrap{flex-wrap:wrap}
+.between{justify-content:space-between}
+.jcenter{justify-content:center}
+.mt-2{margin-top:var(--s-2)}.mt-4{margin-top:var(--s-4)}
+.mt-6{margin-top:var(--s-6)}.mt-8{margin-top:var(--s-8)}
+.mt-10{margin-top:var(--s-10)}
+.mb-6{margin-bottom:var(--s-6)}.mb-8{margin-bottom:var(--s-8)}
+
+.section-head{max-width:770px;margin-inline:auto;text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.section-head--left{margin-inline:0;text-align:left}
+.section-head .lead{margin-top:var(--s-5)}
+.section-head .eyebrow{margin-bottom:var(--s-6)}
+
+/* ------------------------------------------------------- 5. THE AURORA
+   Gemini's hero glow: one enormous rainbow strip, rotated and scrolling
+   forever, seen only through blurred organic blobs that morph, rotate and
+   scale on co-prime durations so the loop never visibly repeats.          */
+.aurora{
+  position:absolute;
+  inset:0 0 auto 0;
+  height:clamp(420px,68vh,760px);
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+  contain:strict;
+}
+/* The blob is the window; the strip inside it is the colour. Only transforms
+   are animated — morphing the border-radius would force the browser to
+   re-rasterise and re-blur a very large layer on every frame.              */
+.aurora__blob{
+  position:absolute;
+  overflow:hidden;
+  filter:blur(72px) saturate(112%);
+  opacity:.30;
+  transform:translateZ(0);
+  will-change:transform;
+}.aurora__strip{
+  position:absolute;
+  inset:-46% -46%;
+  transform:rotate(-36deg);
+  transform-origin:center;
+  background-image:repeating-linear-gradient(
+    180deg,
+    #3C90FF 0%,#AD72FF 10%,#F96BD6 20%,#FF5A59 30%,#FF9238 40%,
+    #FFCF03 50%,#88DE42 60%,#60D673 70%,#00BDD2 80%,#4FA0FF 90%,#3C90FF 100%);
+  background-size:100% 1200px;
+  animation:gradientScroll 38s linear infinite;
+  will-change:background-position;
+}
+@keyframes gradientScroll{
+  from{background-position:0 0}
+  to{background-position:0 1200px}
+}
+
+/* Foreground blob — the bright core */
+.aurora__blob--fg{
+  width:min(1000px,112vw);
+  height:min(520px,58vw);
+  left:50%;
+  top:-30%;
+  margin-left:min(-500px,-56vw);
+  border-radius:56% 44% 62% 38%/48% 58% 42% 52%;
+  animation:spinA 11.7s ease-in-out infinite;
+}
+/* Background blob — the wider, dimmer halo */
+.aurora__blob--bg{
+  width:min(1280px,136vw);
+  height:min(600px,66vw);
+  left:38%;
+  top:-38%;
+  margin-left:min(-640px,-68vw);
+  opacity:.20;
+  border-radius:44% 56% 38% 62%/58% 42% 56% 44%;
+  animation:spinB 17.3s ease-in-out infinite;
+}@keyframes spinA{
+  0%,100%{transform:translateZ(0) rotate(-4deg) scale(.94)}
+  50%{transform:translateZ(0) rotate(9deg) scale(1.02)}
+}
+@keyframes spinB{
+  0%,100%{transform:translateZ(0) rotate(6deg)}
+  50%{transform:translateZ(0) rotate(-7deg)}
+}
+/* Phones: keep the colour, drop the continuous repaint. */
+@media (max-width:720px){
+  .aurora__strip{animation:none}
+  .aurora__blob{animation:none;filter:blur(56px)}
+}
+
+/* Fade the aurora into the page below it */
+.aurora::after{
+  content:"";
+  position:absolute;inset:auto 0 0 0;height:62%;
+  background:linear-gradient(to bottom,transparent,var(--bg) 78%);
+}
+.aurora--on-sunken::after{background:linear-gradient(to bottom,transparent,var(--bg-sunken))}
+
+/* Lower-intensity aurora for interior pages */
+.aurora--soft{height:clamp(320px,46vh,520px)}
+.aurora--soft .aurora__blob{opacity:.22}
+
+/* -------------------------------------------- 6. SOFT BLOB AURA (cheaper)
+   Used further down the page, where a full aurora would be overkill.      */
+.aura{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aura__blob{
+  position:absolute;border-radius:50%;
+  filter:blur(84px);opacity:.42;will-change:transform;
+}.aura__blob--1{width:42vw;height:42vw;min-width:340px;min-height:340px;
+  background:radial-gradient(circle at 30% 30%,#4285F4 0%,rgba(66,133,244,0) 68%);
+  top:-14%;left:-8%;animation:drift1 26s var(--ease-standard) infinite alternate}
+.aura__blob--2{width:38vw;height:38vw;min-width:320px;min-height:320px;
+  background:radial-gradient(circle at 60% 40%,#9B72CB 0%,rgba(155,114,203,0) 68%);
+  top:4%;right:-10%;animation:drift2 31s var(--ease-standard) infinite alternate}
+.aura__blob--3{width:36vw;height:36vw;min-width:300px;min-height:300px;
+  background:radial-gradient(circle at 50% 60%,#D96570 0%,rgba(217,101,112,0) 66%);
+  bottom:-16%;left:24%;opacity:.3;animation:drift3 24s var(--ease-standard) infinite alternate}
+.aura__blob--green{background:radial-gradient(circle at 50% 50%,#34A853 0%,rgba(52,168,83,0) 66%)}
+
+@keyframes drift1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(9%,7%,0) scale(1.16)}}
+@keyframes drift2{from{transform:translate3d(0,0,0) scale(1.08)}to{transform:translate3d(-8%,10%,0) scale(.94)}}
+@keyframes drift3{from{transform:translate3d(0,0,0) scale(.96)}to{transform:translate3d(7%,-9%,0) scale(1.14)}}
+
+.aura--fade::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:42%;
+  background:linear-gradient(to bottom,transparent,var(--bg));
+}
+.aura--fade-sunken::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:42%;
+  background:linear-gradient(to bottom,transparent,var(--bg-sunken));
+}
+
+/* --------------------------------------------------- 7. THE BOTTOM GLOW
+   Gemini's 12-stop radial wash, alpha stepping on a t² curve every 5.5%.  */
+.glow-wash{
+  position:absolute;inset:auto 0 0 0;
+  height:clamp(280px,42vh,550px);
+  z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 130% 100% at center top,
+    rgba(157,210,255,0)    0%,
+    rgba(157,210,255,0)    45%,
+    rgba(157,210,255,.02)  50.5%,
+    rgba(157,210,255,.06)  56%,
+    rgba(157,210,255,.13)  61.5%,
+    rgba(157,210,255,.21)  67%,
+    rgba(157,210,255,.31)  72.5%,
+    rgba(157,210,255,.42)  78%,
+    rgba(157,210,255,.54)  83.5%,
+    rgba(157,210,255,.68)  89%,
+    rgba(157,210,255,.84)  94.5%,
+    rgba(157,210,255,1)    100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 40%);
+  mask-image:linear-gradient(to bottom,transparent,#000 40%);
+  opacity:.5;
+}
+
+/* Fine dot grid — a little technical texture under the hero */
+.dotgrid{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(circle at 1px 1px,var(--border-strong) 1px,transparent 0);
+  background-size:34px 34px;
+  opacity:.35;
+  -webkit-mask-image:radial-gradient(ellipse 76% 60% at 50% 32%,#000 18%,transparent 76%);
+  mask-image:radial-gradient(ellipse 76% 60% at 50% 32%,#000 18%,transparent 76%);
+}.on-top{position:relative;z-index:1}
+
+/* ============================================================================
+   GoogleViews — Components
+   ========================================================================= */
+
+/* ----------------------------------------------------------- 1. THE SPARK
+   Gemini's 4-pointed star, using the official 192×192 outline: 4-fold
+   symmetric, tips inset 8px, concave sides swept by large-radius arcs.   */
+.spark{
+  --spark-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Cpath d='M164.93 86.68c-13.56-5.84-25.42-13.84-35.6-24.01-10.17-10.17-18.18-22.04-24.01-35.6-2.23-5.19-4.04-10.54-5.42-16.02C99.45 9.26 97.85 8 96 8s-3.45 1.26-3.9 3.05c-1.38 5.48-3.18 10.81-5.42 16.02-5.84 13.56-13.84 25.43-24.01 35.6-10.17 10.16-22.04 18.17-35.6 24.01-5.19 2.23-10.54 4.04-16.02 5.42C9.26 92.55 8 94.15 8 96s1.26 3.45 3.05 3.9c5.48 1.38 10.81 3.18 16.02 5.42 13.56 5.84 25.42 13.84 35.6 24.01 10.17 10.17 18.18 22.04 24.01 35.6 2.24 5.2 4.04 10.54 5.42 16.02A4.03 4.03 0 0 0 96 184c1.85 0 3.45-1.26 3.9-3.05 1.38-5.48 3.18-10.81 5.42-16.02 5.84-13.56 13.84-25.42 24.01-35.6 10.17-10.17 22.04-18.18 35.6-24.01 5.2-2.24 10.54-4.04 16.02-5.42A4.03 4.03 0 0 0 184 96c0-1.85-1.26-3.45-3.05-3.9-5.48-1.38-10.81-3.18-16.02-5.42Z'/%3E%3C/svg%3E");
+  width:1em;height:1em;flex:none;
+  display:inline-block;
+  background-image:var(--gradient-gemini);
+  -webkit-mask:var(--spark-mask) center/contain no-repeat;
+  mask:var(--spark-mask) center/contain no-repeat;
+}
+.spark--flat{background-image:none;background-color:currentColor}
+.spark--blue{background-image:var(--gradient-blue)}
+.spark--sm{width:.8em;height:.8em}
+
+@keyframes sparkPulse{
+  0%,100%{transform:scale(1) rotate(0deg);opacity:1}
+  50%{transform:scale(1.16) rotate(24deg);opacity:.82}
+}
+.spark--pulse{animation:sparkPulse 3.4s var(--ease-standard) infinite}
+
+/* --------------------------------------------------------- 2. EYEBROW PILL */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px 7px 12px;
+  border-radius:var(--r-full);
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:var(--e1);
+  font-size:.815rem;
+  font-weight:500;
+  color:var(--text-2);
+  white-space:nowrap;
+}
+.eyebrow--glass{
+  background:var(--glass-bg-strong);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  border-color:var(--glass-border);
+}
+.eyebrow strong{color:var(--text);font-weight:600}
+
+/* --------------------------------------------------------------- 3. BUTTONS */
+.btn{
+  --btn-h:52px;
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  height:var(--btn-h);
+  padding-inline:26px;
+  border-radius:var(--r-full);
+  font-family:var(--font-display);
+  font-size:1rem;
+  font-weight:600;
+  letter-spacing:-.008em;
+  white-space:nowrap;
+  cursor:pointer;
+  isolation:isolate;
+  overflow:hidden;
+  transition:transform var(--d-fast) var(--spring-spatial-fast),
+             box-shadow var(--d-base) var(--ease-standard),
+             background var(--d-fast) var(--spring-effects),
+             border-color var(--d-fast) var(--spring-effects),
+             color var(--d-fast) var(--spring-effects);
+}
+/* M3 Expressive: pressed state tightens the corner */
+.btn:active{transform:scale(.96);border-radius:var(--r-lg)}
+.btn svg,.btn .spark{flex:none}
+
+/* Primary — the Gemini gradient, sheen sweeping on hover */
+.btn--primary{
+  color:#fff;
+  background:var(--gradient-gemini-h);
+  background-size:200% 100%;
+  background-position:0% 50%;
+  box-shadow:0 2px 6px rgba(66,133,244,.24),0 8px 22px -8px rgba(155,114,203,.5);
+  transition:background-position var(--d-slow) var(--ease-standard),
+             transform var(--d-fast) var(--spring-spatial-fast),
+             box-shadow var(--d-base) var(--ease-standard);
+}
+.btn--primary::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--gradient-sheen);
+  transform:translateX(-120%);
+  transition:transform 780ms var(--ease-standard);
+}
+.btn--primary:hover{
+  background-position:100% 50%;
+  box-shadow:0 4px 10px rgba(66,133,244,.28),0 14px 32px -10px rgba(217,101,112,.55);
+}
+.btn--primary:hover::after{transform:translateX(120%)}
+
+/* Tonal — Gemini's soft filled secondary */
+.btn--tonal{color:var(--text);background:var(--surface-3);border:1px solid transparent}
+.btn--tonal:hover{background:var(--surface-4)}
+
+/* Ghost — outlined */
+.btn--ghost{color:var(--text);background:var(--surface);border:1px solid var(--border-strong)}
+.btn--ghost:hover{background:var(--surface-1);border-color:var(--outline)}
+
+/* Glass — for sitting over the aurora */
+.btn--glass{
+  color:var(--text);
+  background:var(--glass-bg-strong);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--e2);
+}
+.btn--glass:hover{box-shadow:var(--e3)}
+
+.btn--lg{--btn-h:58px;padding-inline:32px;font-size:1.05rem}
+.btn--sm{--btn-h:40px;padding-inline:18px;font-size:.92rem}
+.btn--block{display:flex;width:100%}
+
+/* Text link with a nudging arrow */
+.link-arrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-weight:600;color:var(--primary);
+  font-family:var(--font-display);
+  letter-spacing:-.008em;
+}
+.link-arrow svg{transition:transform var(--d-base) var(--ease-emph-dec)}
+.link-arrow:hover svg{transform:translateX(5px)}
+
+/* ----------------------------------------------------------------- 4. CARDS */
+.card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  padding:clamp(24px,2.6vw,32px);
+  box-shadow:var(--shadow-card);
+  transition:transform var(--d-med) var(--spring-spatial),
+             box-shadow var(--d-base) var(--ease-standard),
+             background var(--d-base) var(--ease-standard),
+             border-color var(--d-base) var(--ease-standard);
+}
+.card--pad-lg{padding:clamp(28px,3.4vw,44px)}
+.card--flat{box-shadow:none}
+.card--raised{box-shadow:var(--shadow-card-hover)}
+/* Depth from the tonal ramp rather than shadow — the Gemini way */
+.card--sunken{background:var(--surface-1);border-color:transparent;box-shadow:none}
+.card--tonal{background:var(--surface-2);border-color:transparent;box-shadow:none}
+
+.card--hover:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-card-hover);
+  border-color:transparent;
+}
+
+/* Glass card — frosted, for stacking over the aurora */
+.card--glass{
+  background:var(--glass-bg);
+  -webkit-backdrop-filter:var(--glass-blur);
+  backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--e4);
+}
+.card--glass-strong{background:var(--glass-bg-strong)}
+
+/* Gradient hairline that lights up on hover */
+.glow-edge::before{
+  content:"";
+  position:absolute;inset:0;
+  border-radius:inherit;
+  padding:1.5px;
+  background:var(--gradient-gemini);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:0;
+  transition:opacity var(--d-base) var(--ease-standard);
+  pointer-events:none;
+}
+.glow-edge:hover::before,.glow-edge--always::before{opacity:1}
+
+/* Card carrying the full gradient as its surface */
+.card--gemini{
+  background:var(--gradient-gemini);
+  border:none;color:#fff;overflow:hidden;
+}
+.card--gemini h2,.card--gemini h3,.card--gemini strong{color:#fff}
+.card--gemini .muted,.card--gemini .lead,.card--gemini .dim{color:rgba(255,255,255,.9)}
+
+/* ------------------------------------------------------------ 5. ICON TILES */
+.icon-tile{
+  width:52px;height:52px;flex:none;
+  display:grid;place-items:center;
+  border-radius:var(--r-lg);
+  background:var(--surface-3);
+  color:var(--text);
+  transition:transform var(--d-med) var(--spring-spatial),
+             background var(--d-base) var(--ease-standard);
+}
+.icon-tile svg{width:26px;height:26px}
+.icon-tile--blue{background:var(--primary-container);color:var(--on-primary-container)}
+.icon-tile--green{background:var(--tertiary-container);color:var(--tertiary)}
+.icon-tile--red{background:rgba(234,67,53,.12);color:#B3261E}
+.icon-tile--yellow{background:rgba(251,188,4,.18);color:#8A6A00}
+.icon-tile--violet{background:rgba(155,114,203,.15);color:#6E4AA0}
+.icon-tile--gemini{background:var(--gradient-gemini);color:#fff}.card--hover:hover .icon-tile{transform:scale(1.07) rotate(-4deg)}
+
+.icon-tile--lg{width:64px;height:64px;border-radius:var(--r-lg-inc)}
+.icon-tile--lg svg{width:31px;height:31px}
+
+/* ------------------------------------------------------------------ 6. NAV */
+.nav{
+  position:fixed;inset:0 0 auto 0;
+  z-index:100;
+  height:var(--nav-h);
+  display:flex;align-items:center;
+  border-bottom:1px solid transparent;
+  transition:background var(--d-base) var(--ease-standard),
+             box-shadow var(--d-base) var(--ease-standard),
+             border-color var(--d-base) var(--ease-standard);
+}
+.nav.is-stuck{
+  background:var(--glass-bg-strong);
+  -webkit-backdrop-filter:var(--glass-blur-light);
+  backdrop-filter:var(--glass-blur-light);
+  border-bottom-color:var(--border);
+}
+.nav__inner{
+  width:100%;max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:clamp(20px,5vw,40px);
+  display:flex;align-items:center;gap:var(--s-6);
+}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand__mark{height:32px;width:auto}
+.brand__name{
+  font-family:var(--font-display);
+  font-size:1.2rem;font-weight:600;letter-spacing:-.028em;
+  color:var(--text);
+}
+.nav__links{display:flex;align-items:center;gap:2px;margin-inline:auto}
+.nav__link{
+  position:relative;
+  padding:9px 15px;
+  border-radius:var(--r-full);
+  font-size:.94rem;font-weight:500;
+  color:var(--text-2);
+  transition:color var(--d-fast) var(--spring-effects),
+             background var(--d-fast) var(--spring-effects);
+}
+.nav__link:hover{color:var(--text);background:var(--surface-2)}
+.nav__link.is-active{color:var(--text);font-weight:600}
+.nav__link.is-active::after{
+  content:"";position:absolute;left:15px;right:15px;bottom:2px;height:2.5px;
+  border-radius:2px;background:var(--gradient-gemini-h);
+}
+.nav__actions{display:flex;align-items:center;gap:10px;flex:none}.nav__burger{
+  display:none;
+  width:44px;height:44px;
+  border-radius:var(--r-full);
+  place-items:center;color:var(--text);
+}
+.nav__burger:hover{background:var(--surface-2)}
+.burger-box{width:20px;height:14px;position:relative}
+.burger-box span{
+  position:absolute;left:0;height:2px;width:100%;border-radius:2px;
+  background:currentColor;
+  transition:transform var(--d-base) var(--ease-emph),
+             opacity var(--d-fast) var(--ease-standard),
+             top var(--d-base) var(--ease-emph);
+}
+.burger-box span:nth-child(1){top:0}
+.burger-box span:nth-child(2){top:6px}
+.burger-box span:nth-child(3){top:12px}
+body.menu-open .burger-box span:nth-child(1){top:6px;transform:rotate(45deg)}
+body.menu-open .burger-box span:nth-child(2){opacity:0}
+body.menu-open .burger-box span:nth-child(3){top:6px;transform:rotate(-45deg)}
+
+.nav__drawer{
+  position:fixed;inset:var(--nav-h) 0 0 0;
+  z-index:99;
+  background:var(--bg);
+  padding:var(--s-6) clamp(20px,5vw,40px) var(--s-9);
+  display:flex;flex-direction:column;gap:4px;
+  transform:translateY(-8px);
+  opacity:0;visibility:hidden;
+  transition:opacity var(--d-base) var(--ease-standard),
+             transform var(--d-base) var(--ease-emph-dec),
+             visibility var(--d-base);
+  overflow-y:auto;
+}
+body.menu-open .nav__drawer{opacity:1;visibility:visible;transform:none}
+body.menu-open{overflow:hidden}
+.nav__drawer a.nav__link{
+  padding:15px 18px;font-size:1.1rem;font-weight:500;
+  border-radius:var(--r-lg);color:var(--text);
+}
+.nav__drawer a.nav__link.is-active::after{display:none}
+.nav__drawer a.nav__link.is-active{background:var(--surface-2);font-weight:600}
+.nav__drawer .btn{margin-top:var(--s-5)}
+
+@media (max-width:1060px){
+  .nav__links{display:none}
+  .nav__burger{display:grid}
+  .nav__actions{margin-left:auto}
+  .nav__actions .btn--nav{display:none}
+}
+
+/* --------------------------------------------------------------- 7. STARS */
+.stars{display:inline-flex;gap:2px;color:#FBBC04;flex:none}
+.stars svg{width:1.05em;height:1.05em;fill:currentColor}
+.stars--lg svg{width:1.5em;height:1.5em}
+
+/* ---------------------------------------------------------------- 8. STATS */
+.stat{text-align:center}
+.stat__num{
+  font-family:var(--font-display);
+  font-size:clamp(2.3rem,4.4vw,3.3rem);
+  font-weight:500;line-height:1;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+  background-image:var(--gradient-gemini-h);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.stat__label{margin-top:12px;color:var(--text-2);font-size:.95rem;line-height:1.5}
+
+/* ---------------------------------------------------------------- 9. STEPS */
+.step__num{
+  width:44px;height:44px;
+  display:grid;place-items:center;
+  border-radius:var(--r-full);
+  font-family:var(--font-display);
+  font-weight:600;font-size:1.05rem;
+  color:#fff;
+  background:var(--gradient-gemini);
+  box-shadow:0 4px 14px -6px rgba(66,133,244,.6);
+}
+
+/* ------------------------------------------------------------ 10. ACCORDION */
+.faq{border-top:1px solid var(--border)}
+.faq__item{border-bottom:1px solid var(--border)}
+.faq__q{
+  width:100%;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-5);
+  padding:22px 4px;
+  text-align:left;
+  font-family:var(--font-display);
+  font-size:1.06rem;font-weight:600;letter-spacing:-.014em;
+  line-height:1.45;
+  color:var(--text);
+  transition:color var(--d-fast) var(--spring-effects);
+}
+.faq__q:hover{color:var(--primary)}
+.faq__icon{
+  width:30px;height:30px;flex:none;margin-top:3px;
+  display:grid;place-items:center;
+  border-radius:var(--r-full);
+  background:var(--surface-3);
+  transition:transform var(--d-base) var(--ease-emph),
+             background var(--d-base) var(--ease-standard),
+             color var(--d-base) var(--ease-standard);
+}
+.faq__icon svg{width:16px;height:16px}
+.faq__item.is-open .faq__icon{transform:rotate(180deg);background:var(--gradient-gemini);color:#fff}
+.faq__a{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows var(--d-med) var(--ease-emph);
+}
+.faq__item.is-open .faq__a{grid-template-rows:1fr}
+.faq__a>div{overflow:hidden}
+.faq__a p{padding:0 46px 24px 4px;color:var(--text-2);line-height:1.72;text-wrap:pretty}
+.faq__a p+p{padding-top:14px}
+
+/* --------------------------------------------------------------- 11. FORMS */
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-size:.9rem;font-weight:600;color:var(--text-2)}
+.field input,.field textarea,.field select{
+  width:100%;
+  padding:14px 18px;
+  border-radius:var(--r-lg);
+  background:var(--surface-2);
+  border:1.5px solid var(--border);
+  color:var(--text);
+  font-size:1rem;
+  transition:border-color var(--d-fast) var(--spring-effects),
+             background var(--d-fast) var(--spring-effects),
+             box-shadow var(--d-fast) var(--spring-effects);
+}.field select{
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23727676' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:48px;
+}
+.field textarea{resize:vertical;min-height:136px;line-height:1.65}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-3)}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:none;
+  border-color:var(--g-blue);
+  background:var(--surface);
+  box-shadow:0 0 0 4px rgba(66,133,244,.14);
+}
+.field--error input,.field--error textarea,.field--error select{border-color:#B3261E}
+.field__err{font-size:.83rem;color:#B3261E;display:none}
+.field--error .field__err{display:block}.form-note{font-size:.85rem;color:var(--text-3);line-height:1.6}
+.form-success{
+  display:none;
+  padding:20px 24px;border-radius:var(--r-lg);
+  background:var(--tertiary-container);
+  color:var(--text);
+}
+.form-success.is-visible{display:flex;gap:12px;align-items:flex-start}
+.form-success svg{flex:none;width:22px;height:22px;margin-top:2px;color:var(--tertiary)}
+
+/* ---------------------------------------------------------------- 12. LIST */
+.checklist{display:flex;flex-direction:column;gap:14px}
+.checklist li{display:flex;gap:13px;align-items:flex-start;line-height:1.6}
+.checklist svg{width:21px;height:21px;flex:none;margin-top:3px;color:var(--tertiary)}
+.checklist--blue svg{color:var(--primary)}
+.checklist--muted svg{color:var(--text-3)}
+
+/* --------------------------------------------------------------- 13. LOGOS */
+.marquee{
+  position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+}
+.marquee__track{
+  display:flex;gap:clamp(30px,5vw,68px);
+  width:max-content;
+  animation:marquee 48s linear infinite;
+}
+.marquee:hover .marquee__track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee__item{
+  display:flex;align-items:center;gap:11px;
+  color:var(--text-3);
+  font-family:var(--font-display);
+  font-size:1rem;font-weight:500;letter-spacing:-.012em;
+  white-space:nowrap;
+  padding-block:6px;
+}
+.marquee__item svg{width:21px;height:21px;flex:none;opacity:.7}
+
+/* ---------------------------------------------------- 14. SHIMMER / REVEAL */
+/* Gemini's loading sheen: the sweep finishes at 70%, then rests. */
+.shimmer{position:relative;overflow:hidden;isolation:isolate}
+.shimmer::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);
+  background-size:400% 400%;
+  animation:shimmerSweep 2.6s linear infinite;
+}@keyframes shimmerSweep{
+  0%{background-position:100% 100%}
+  70%,100%{background-position:0 0}
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity var(--d-slow) var(--ease-standard),
+             transform var(--d-slow) var(--ease-emph-dec);
+  transition-delay:var(--reveal-delay,0ms);
+}
+.reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+/* --------------------------------------------------------------- 15. FOOTER */
+.footer{
+  background:var(--bg-sunken);
+  border-top:1px solid var(--border-strong);
+  padding-block:clamp(52px,6vw,84px) 32px;
+  position:relative;overflow:hidden;
+}
+.footer__grid{
+  display:grid;
+  grid-template-columns:1.7fr repeat(3,1fr);
+  gap:clamp(28px,4vw,56px);
+}
+@media (max-width:900px){.footer__grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.footer__grid{grid-template-columns:1fr}}
+.footer__h{
+  font-size:.775rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:18px;
+}
+.footer__links{display:flex;flex-direction:column;gap:12px}
+.footer__links a{
+  color:var(--text-2);font-size:.95rem;
+  transition:color var(--d-fast) var(--spring-effects);
+  width:fit-content;
+}
+.footer__links a:hover{color:var(--text)}
+.footer__bottom{
+  margin-top:clamp(40px,5vw,64px);
+  padding-top:26px;
+  border-top:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:16px;
+  align-items:center;justify-content:space-between;
+  color:var(--text-3);font-size:.85rem;
+}
+.footer__legal{max-width:680px;line-height:1.65}
+
+/* ------------------------------------------------------------- 16. HELPERS */
+.divider{height:1px;background:var(--border);border:none}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 11px;border-radius:var(--r-full);
+  font-size:.75rem;font-weight:600;letter-spacing:.02em;
+  text-transform:uppercase;
+}
+.badge--gemini{background:var(--gradient-gemini);color:#fff}
+.badge--green{background:var(--tertiary-container);color:var(--tertiary)}
+.badge--blue{background:var(--primary-container);color:var(--on-primary-container)}
+.badge--soft{background:var(--surface-3);color:var(--text-2)}
+
+.skip-link{
+  position:absolute;left:16px;top:-70px;z-index:200;
+  padding:12px 20px;border-radius:var(--r-full);
+  background:var(--text);color:var(--bg);font-weight:600;
+  transition:top var(--d-base) var(--ease-emph-dec);
+}
+.skip-link:focus{top:16px}
+
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ============================================================================
+   GoogleViews — Mockups
+   Glass NFC cards, phones, stands, live UI props. All pure CSS + inline SVG.
+   ========================================================================= */
+
+/* ------------------------------------------------------------- 1. 3D SCENE */
+.scene{
+  perspective:1500px;
+  perspective-origin:50% 42%;
+  position:relative;
+}
+.scene--flat{perspective:none}
+
+.tilt{
+  transform-style:preserve-3d;
+  transition:transform 900ms var(--ease-emph-dec);
+  will-change:transform;
+}
+.tilt--card{transform:rotateX(14deg) rotateY(-19deg) rotateZ(3deg)}
+.tilt--phone{transform:rotateX(9deg) rotateY(13deg) rotateZ(-2.5deg)}
+.tilt--soft{transform:rotateX(8deg) rotateY(-10deg)}
+
+@keyframes floatY{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+@keyframes floatY-sm{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.float{animation:floatY 7s var(--ease-standard) infinite}
+.float--slow{animation:floatY 9.5s var(--ease-standard) infinite}
+.float--sm{animation:floatY-sm 6s var(--ease-standard) infinite}
+.float--delay{animation-delay:-3.2s}
+
+/* -------------------------------------------------------- 3. THE NFC WAVES */
+.nfc-wave{
+  width:34px;height:34px;flex:none;
+  position:relative;color:currentColor;
+}
+.nfc-wave svg{width:100%;height:100%;overflow:visible}
+.nfc-wave .arc{
+  fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;
+  opacity:.32;
+  transform-origin:14% 50%;
+}
+.nfc-wave .arc--1{animation:arcPulse 2.1s var(--ease-standard) infinite}
+.nfc-wave .arc--2{animation:arcPulse 2.1s var(--ease-standard) .26s infinite}
+.nfc-wave .arc--3{animation:arcPulse 2.1s var(--ease-standard) .52s infinite}
+@keyframes arcPulse{
+  0%{opacity:.18;transform:scale(.9)}
+  38%{opacity:1;transform:scale(1)}
+  100%{opacity:.18;transform:scale(.9)}
+}
+
+/* ----------------------------------------------------------- 4. THE PHONE
+   Every dimension inside the phone is expressed in cqw, so the whole mock-up
+   scales cleanly from a 120px thumbnail to a 300px hero without the screen
+   content overflowing its own frame. Reference width: 288px (1cqw = 2.88px).
+   ------------------------------------------------------------------------ */
+.phone{
+  container-type:inline-size;
+  position:relative;
+  width:100%;
+  max-width:288px;
+  aspect-ratio:1/2.03;
+  border-radius:15.3cqw;
+  padding:3.8cqw;
+  background:linear-gradient(158deg,#3A3D40 0%,#141516 26%,#26282A 52%,#0E0F10 78%,#37393C 100%);
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,.10) inset,
+    0 2px 3px rgba(0,0,0,.30),
+    0 34px 60px -22px rgba(27,28,29,.48),
+    0 70px 100px -60px rgba(27,28,29,.4);
+  flex:none;
+  transform-style:preserve-3d;
+}.phone::before{  /* power button */
+  content:"";position:absolute;right:-2px;top:23%;width:2.5px;height:8%;
+  border-radius:2px;background:linear-gradient(180deg,#4A4D50,#2A2C2E);
+}
+.phone::after{   /* volume rocker */
+  content:"";position:absolute;left:-2px;top:19%;width:2.5px;height:5%;
+  border-radius:2px;background:linear-gradient(180deg,#4A4D50,#2A2C2E);
+  box-shadow:0 14cqw 0 #3A3D40;
+}
+.phone__screen{
+  position:relative;
+  width:100%;height:100%;
+  border-radius:11.8cqw;
+  overflow:hidden;
+  background:var(--surface);
+  display:flex;flex-direction:column;
+}
+.phone__notch{
+  position:absolute;top:3.1cqw;left:50%;transform:translateX(-50%);
+  width:9cqw;height:9cqw;border-radius:50%;
+  background:#0B0C0D;z-index:6;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.phone__notch::after{
+  content:"";position:absolute;inset:2.4cqw;border-radius:50%;
+  background:radial-gradient(circle at 35% 32%,#2C4A6B,#0D1620 62%);
+}
+.phone__statusbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:4.5cqw 6.9cqw 1.4cqw;
+  font-size:3.67cqw;font-weight:600;color:var(--text);
+  line-height:1.2;flex:none;
+}
+.phone__statusbar .sb-icons{display:flex;gap:1.4cqw;align-items:center;opacity:.85}
+.phone__statusbar svg{width:4.2cqw;height:4.2cqw;fill:currentColor}
+.phone__home{
+  position:absolute;bottom:2.4cqw;left:50%;transform:translateX(-50%);
+  width:34%;height:1.4cqw;border-radius:1cqw;background:var(--text);opacity:.28;z-index:6;
+}
+
+/* --------------------------------------------- 5. GOOGLE REVIEW SHEET (UI) */
+.gsheet{
+  flex:1;min-height:0;
+  padding:4.9cqw 5.9cqw 9cqw;
+  display:flex;flex-direction:column;
+  background:var(--surface);
+}
+.gsheet__bar{
+  display:flex;align-items:center;gap:3.1cqw;
+  padding:2.8cqw 4.2cqw;
+  border-radius:var(--r-full);
+  background:var(--surface-3);
+  margin-bottom:5.6cqw;flex:none;
+}
+.gsheet__bar svg{width:4.9cqw;height:4.9cqw;flex:none;color:var(--text-3)}
+.gsheet__bar span{
+  font-size:3.7cqw;line-height:1.3;color:var(--text-3);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.gsheet__biz{display:flex;align-items:center;gap:3.8cqw;flex:none}
+.gsheet__avatar{
+  width:14.6cqw;height:14.6cqw;flex:none;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--gradient-google);
+  color:#fff;font-family:var(--font-display);
+  font-weight:600;font-size:5.8cqw;
+}
+.gsheet__name{
+  font-family:var(--font-display);
+  font-size:4.6cqw;font-weight:600;letter-spacing:-.015em;color:var(--text);
+  line-height:1.25;
+}
+.gsheet__name + p{font-size:3.7cqw;line-height:1.3;color:var(--text-3);margin-top:.7cqw}
+.gsheet__prompt{
+  margin:6.25cqw 0 4.2cqw;
+  font-family:var(--font-display);
+  font-size:5cqw;font-weight:600;letter-spacing:-.018em;color:var(--text);
+  line-height:1.25;text-align:center;flex:none;
+}
+.gsheet__stars{
+  display:flex;justify-content:center;gap:2.4cqw;flex:none;margin-bottom:5.6cqw;
+}
+.gsheet__stars svg{width:9cqw;height:9cqw;fill:var(--surface-4);transition:fill 260ms var(--ease-standard)}
+.gsheet__stars svg.on{fill:#FBBC04}
+.gsheet.is-rated .gsheet__stars svg{animation:starPop 500ms var(--spring-spatial) backwards}
+.gsheet.is-rated .gsheet__stars svg:nth-child(1){animation-delay:.05s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(2){animation-delay:.14s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(3){animation-delay:.23s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(4){animation-delay:.32s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(5){animation-delay:.41s}
+@keyframes starPop{
+  0%{transform:scale(.4) rotate(-24deg);opacity:.2}
+  60%{transform:scale(1.22) rotate(6deg);opacity:1}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+.gsheet__input{
+  flex:1;min-height:19.4cqw;
+  border-radius:4.9cqw;
+  border:1.5px solid var(--border);
+  background:var(--surface-2);
+  padding:3.8cqw 4.5cqw;
+  font-size:3.9cqw;line-height:1.5;color:var(--text-2);
+  overflow:hidden;
+}
+.gsheet__caret{
+  display:inline-block;width:1.5px;height:.86em;
+  background:var(--g-blue);vertical-align:-1px;
+  animation:caretBlink 1.05s steps(1) infinite;
+}
+@keyframes caretBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.gsheet__chips{display:flex;gap:2.1cqw;flex-wrap:wrap;margin-top:3.8cqw;flex:none}
+.gsheet__chip{
+  padding:1.7cqw 3.5cqw;border-radius:var(--r-full);
+  background:var(--surface-3);
+  font-size:3.4cqw;line-height:1.35;font-weight:500;color:var(--text-2);white-space:nowrap;
+}
+.gsheet__post{
+  margin-top:4.9cqw;flex:none;
+  height:13.2cqw;border-radius:var(--r-full);
+  display:grid;place-items:center;
+  background:var(--g-blue);color:#fff;
+  font-family:var(--font-display);
+  font-size:4.4cqw;font-weight:600;letter-spacing:-.01em;
+}/* --------------------------------------------------------- 9. HERO STAGING */
+.hero-stage{
+  position:relative;
+  /* the floating props are gone, so the stage no longer needs their headroom */
+  min-height:min(478px,64vw);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-stage__card{
+  position:relative;
+  z-index:4;
+  width:min(344px,74%);
+  margin-right:min(170px,30%);
+}
+.hero-stage__phone{
+  position:absolute;
+  right:0;bottom:-2%;
+  z-index:3;
+  width:min(206px,39%);
+  /* An element can't be its own query container, so the phone's OWN cqw
+     values (padding, radius) resolve against this wrapper. Its descendants
+     resolve against .phone. Both end up sized to the phone's real width. */
+  container-type:inline-size;
+}
+.hero-stage__glow{
+  position:absolute;
+  width:120%;height:120%;
+  left:-10%;top:-10%;
+  background:radial-gradient(circle at 42% 46%,rgba(155,114,203,.30),transparent 62%);
+  filter:blur(46px);
+  z-index:0;pointer-events:none;
+}
+@media (max-width:1040px){
+  .hero-stage{min-height:0;padding-block:24px}
+  .hero-stage__card{margin-right:min(72px,14%)}
+}
+@media (max-width:520px){
+  /* the phone is tall — give the stage room or it climbs into the copy above,
+     and keep the card's text clear of where the phone overlaps it */
+  .hero-stage{min-height:392px;align-items:flex-end}
+  .hero-stage__card{width:74%;margin-right:24px}
+  .hero-stage__phone{width:40%;right:-10px;bottom:-2%}
+  .tilt--card{transform:rotateX(10deg) rotateY(-13deg) rotateZ(2deg)}
+  .tilt--phone{transform:rotateX(6deg) rotateY(9deg) rotateZ(-2deg)}
+  .nfc-card{padding:18px 19px;border-radius:17px}
+  .nfc-card__cta{font-size:1.12rem}
+  .nfc-card__sub{font-size:.72rem;margin-top:5px}
+  .nfc-card__brand img{height:21px}
+  .nfc-card__brand span{font-size:.84rem}
+  .nfc-card__stars svg{width:13px;height:13px}
+  .nfc-card__stars{margin-bottom:7px}
+  .nfc-card__chip{width:32px;height:24px}
+}
+
+/* -------------------------------------------------- 10. COMPARISON VISUAL */
+.versus{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:clamp(14px,2.4vw,28px);
+  align-items:stretch;
+}
+@media (max-width:760px){
+  .versus{grid-template-columns:1fr;gap:14px}
+  .versus__mid{transform:rotate(90deg);justify-self:center}
+}
+.versus__mid{
+  align-self:center;
+  width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--surface);border:1px solid var(--border);
+  box-shadow:var(--e2);
+  font-family:var(--font-display);font-weight:600;font-size:.82rem;color:var(--text-3);
+}
+.versus__col{
+  padding:clamp(20px,2.6vw,30px);
+  border-radius:var(--r-xl);
+  border:1px solid var(--border);
+  background:var(--surface);
+}
+.versus__col--bad{background:var(--surface-2)}
+.versus__col--good{
+  border-color:transparent;
+  background:var(--surface);
+  box-shadow:var(--e3);
+  position:relative;
+}
+.versus__label{
+  font-size:.755rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:16px;
+}
+.versus__col--good .versus__label{
+  background:var(--gradient-gemini);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ---------------------------------------------------- 11. TIMELINE / FLOW */
+.flow{position:relative;display:flex;flex-direction:column;gap:0}
+.flow__item{
+  position:relative;
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:clamp(16px,2.4vw,28px);
+  padding-bottom:clamp(28px,3.6vw,44px);
+}
+.flow__item:last-child{padding-bottom:0}
+.flow__item::before{
+  content:"";position:absolute;left:25px;top:52px;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--border-strong),var(--border));
+}
+.flow__item:last-child::before{display:none}
+.flow__dot{
+  width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:var(--e2);
+  font-family:var(--font-display);font-weight:600;color:var(--text);
+  position:relative;z-index:1;
+}
+.flow__item--active .flow__dot{
+  background:var(--gradient-gemini);color:#fff;border-color:transparent;
+  box-shadow:0 6px 18px -6px rgba(66,133,244,.6);
+}
+@media (max-width:560px){
+  .flow__item{grid-template-columns:44px 1fr}
+  .flow__dot{width:44px;height:44px;font-size:.9rem}
+  .flow__item::before{left:21px;top:44px}
+}
+
+/* ------------------------------------------------------- 12. PRICE TABLES */
+.price{
+  position:relative;
+  display:flex;flex-direction:column;
+  padding:clamp(26px,3vw,36px);
+  border-radius:var(--r-xl);
+  border:1px solid var(--border);
+  background:var(--surface);
+  box-shadow:var(--shadow-card);
+  transition:transform var(--d-base) var(--ease-emph-dec),box-shadow var(--d-base) var(--ease-standard);
+}
+.price:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover)}
+.price--featured{
+  border-color:transparent;
+  box-shadow:var(--shadow-card-hover);
+}
+.price--featured::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;
+  background:var(--gradient-gemini);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;
+}
+.price__tag{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;
+}
+.price__name{font-family:var(--font-display);font-size:1.2rem;font-weight:600;letter-spacing:-.022em}
+.price__desc{margin-top:8px;color:var(--text-2);font-size:.93rem;line-height:1.55;min-height:2.9em}
+.price__amount{
+  margin-top:22px;display:flex;align-items:baseline;gap:4px;
+  font-family:var(--font-display);
+}
+.price__amount b{font-size:2.9rem;font-weight:600;letter-spacing:-.04em;line-height:1}
+.price__amount span{font-size:.95rem;color:var(--text-3);font-weight:500}
+.price__unit{margin-top:6px;font-size:.83rem;color:var(--text-3)}
+.price .checklist{margin-top:26px;flex:1}
+.price .btn{margin-top:28px}
+
+/* ============================================================================
+   13. THE REVIEW CARD — the actual product
+   A printed blue/white plaque: Google mark + stars on a blue field, a wave
+   divider, then the two ways to use it (tap or scan) on white.
+   Colours are literal, not tokens: this is a physical printed object, so it
+   must look identical in light and dark themes.
+   Everything inside scales in cqw off the card's own width.
+   ========================================================================= */
+.rcard{
+  container-type:inline-size;
+  position:relative;
+  width:100%;
+  max-width:420px;
+  aspect-ratio:1/.92;
+  border-radius:7% / 7.6%;
+  overflow:hidden;
+  background:#fff;
+  color:#1F1F1F;
+  display:flex;flex-direction:column;
+  box-shadow:
+    0 2px 4px rgba(27,28,29,.10),
+    0 26px 52px -20px rgba(26,95,217,.45),
+    0 60px 90px -55px rgba(27,28,29,.5);
+  transform-style:preserve-3d;
+  isolation:isolate;
+}
+
+/* --- blue field ---------------------------------------------------------- */
+.rcard__top{
+  position:relative;
+  flex:none;
+  padding:7.5cqw 7cqw 11cqw;
+  background:linear-gradient(158deg,#4285F4 0%,#1B62DC 58%,#1652C6 100%);
+  color:#fff;
+  display:flex;align-items:center;gap:5cqw;
+}
+.rcard__top::before{           /* printed sheen */
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(90% 70% at 16% 0%,rgba(255,255,255,.28),transparent 62%);
+  pointer-events:none;
+}
+.rcard__wave{
+  /* An <svg> is a replaced element: with only left/right set, width:auto
+     resolves from the viewBox ratio (10:1), not from the offsets — so the wave
+     came out far narrower than the card. Width must be explicit. */
+  position:absolute;left:-1%;bottom:-1px;
+  width:102%;
+  /* the global reset caps svg at max-width:100%, which was clamping this
+     back to the card width and leaving a sliver of blue at the right edge */
+  max-width:none;
+  height:9cqw;display:block;
+}
+
+.rcard__g{
+  position:relative;z-index:1;
+  width:19cqw;height:19cqw;flex:none;
+  border-radius:50%;
+  background:#fff;
+  display:grid;place-items:center;
+  box-shadow:0 .6cqw 1.6cqw rgba(0,0,0,.18);
+}
+.rcard__g svg{width:62%;height:62%}
+
+.rcard__lead{position:relative;z-index:1;min-width:0;text-align:right;margin-left:auto}
+.rcard__kicker{
+  font-family:var(--font-display);
+  font-size:6.2cqw;font-weight:500;line-height:1.1;letter-spacing:-.02em;
+  color:rgba(255,255,255,.94);
+}
+.rcard__title{
+  font-family:var(--font-display);
+  font-size:8.6cqw;font-weight:600;line-height:1.08;letter-spacing:-.03em;
+  margin-top:.4cqw;
+}
+.rcard__stars{
+  display:flex;justify-content:flex-end;gap:1cqw;margin-top:2.2cqw;
+}
+.rcard__stars svg{width:6.6cqw;height:6.6cqw;fill:#FFC400;
+  filter:drop-shadow(0 .3cqw .6cqw rgba(0,0,0,.22))}
+
+/* --- white field: tap | or | scan ---------------------------------------- */
+.rcard__body{
+  flex:1;min-height:0;
+  padding:1cqw 7cqw 7cqw;
+  display:flex;align-items:center;justify-content:space-between;gap:3cqw;
+}
+.rcard__opt{
+  display:flex;flex-direction:column;align-items:center;gap:2.4cqw;
+  min-width:0;
+}
+.rcard__cap{
+  font-size:3.5cqw;font-weight:500;line-height:1.25;
+  color:#3C4043;text-align:center;
+  letter-spacing:-.005em;
+}
+.rcard__or{
+  font-size:4cqw;font-weight:500;color:#80868B;flex:none;
+  align-self:center;margin-top:4cqw;
+}
+.rcard__tap{width:38cqw;height:auto;flex:none}
+.rcard__qrbox{
+  position:relative;
+  width:24cqw;height:24cqw;flex:none;
+  display:grid;place-items:center;
+  color:#1F1F1F;
+}
+.rcard__qrbox .qr{width:82%;height:82%}
+/* corner brackets, like the reference */
+.rcard__qrbox::before,.rcard__qrbox::after{
+  content:"";position:absolute;width:5cqw;height:5cqw;
+  border:.8cqw solid #1F1F1F;
+}
+.rcard__qrbox::before{top:0;left:0;border-right:0;border-bottom:0;border-radius:1.2cqw 0 0 0}
+.rcard__qrbox::after{bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 1.2cqw 0}
+.rcard__qrbox i{position:absolute;width:5cqw;height:5cqw;border:.8cqw solid #1F1F1F}
+.rcard__qrbox i:nth-of-type(1){top:0;right:0;border-left:0;border-bottom:0;border-radius:0 1.2cqw 0 0}
+.rcard__qrbox i:nth-of-type(2){bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 1.2cqw}
+
+/* --- variants ------------------------------------------------------------ */
+/* the square adhesive sticker: same artwork, die-cut white margin.
+   The ring is a child of .rcard, so its cqw resolves against the card. */
+.rcard--sticker{aspect-ratio:1/1;border-radius:11% / 11%}
+.rcard--sticker::after{
+  content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+  border:2.4cqw solid #fff;
+  border-radius:inherit;
+}
+
+/* on the tabletop stand the card sits above a base */
+.rcard-stand{container-type:inline-size;display:flex;flex-direction:column;align-items:center;width:100%}
+.rcard-stand .rcard{border-radius:7% 7% 2% 2% / 7.6% 7.6% 2.2% 2.2%}
+.rcard-stand__base{
+  position:relative;
+  width:72%;height:5.2cqw;min-height:13px;
+  border-radius:0 0 3cqw 3cqw;
+  background:linear-gradient(180deg,#C7CED8 0%,#EDF0F4 24%,#AEB6C1 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),
+             0 1.4cqw 2.6cqw -1cqw rgba(27,28,29,.5);
+}
+
+/* ============================================================================
+   GoogleViews — Page & section layouts
+   ========================================================================= */
+
+/* ------------------------------------------------------------------ HERO */
+.hero__grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(32px,5vw,64px);
+  align-items:center;
+}
+@media (max-width:1060px){
+  .hero__grid{grid-template-columns:minmax(0,1fr);gap:clamp(40px,7vw,64px)}
+  .hero__copy{max-width:680px}
+}/* --------------------------------------------------------- SPLIT SECTIONS */
+.split{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(36px,5.5vw,80px);
+  align-items:center;
+}
+.split--reverse .split__visual{order:-1}
+@media (max-width:940px){
+  .split{grid-template-columns:minmax(0,1fr);gap:clamp(36px,6vw,52px)}
+  .split--reverse .split__visual{order:0}
+}
+.split__visual{display:flex;justify-content:center}
+
+/* -------------------------------------------------------- ANALOGY (NFC) */
+.analogy{width:100%;max-width:460px}
+.analogy__row{
+  display:flex;align-items:center;gap:16px;
+  margin-top:var(--s-6);
+}
+.analogy__row h4{margin-bottom:2px}
+.analogy__eq{
+  display:flex;align-items:center;gap:14px;
+  margin:var(--s-6) 0 0;
+  padding-left:6px;
+}
+.analogy__eq span{flex:1;height:1px;background:var(--border)}
+.analogy__eq em{
+  font-style:normal;font-size:.78rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  background-image:var(--gradient-gemini-h);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  white-space:nowrap;
+}
+.analogy__note{
+  display:flex;gap:12px;align-items:flex-start;
+  margin-top:var(--s-7);padding-top:var(--s-6);
+  border-top:1px solid var(--border);
+  color:var(--text-2);
+}
+.analogy__note .spark{margin-top:4px;font-size:1.05rem}
+
+/* ---------------------------------------------------------------- CALLOUT */
+.callout{
+  display:flex;gap:clamp(18px,2.4vw,26px);
+  align-items:flex-start;
+  padding:clamp(24px,3vw,34px);
+  border-radius:var(--r-xl);
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+@media (max-width:560px){.callout{flex-direction:column;gap:var(--s-5)}}
+
+/* -------------------------------------------------------------- NOTE BOX */
+.note-box{
+  display:flex;gap:13px;align-items:flex-start;
+  padding:18px 20px;
+  border-radius:var(--r-lg);
+  background:var(--surface-2);
+  color:var(--text-2);
+}
+.note-box svg{flex:none;margin-top:2px;color:var(--tertiary)}
+
+/* -------------------------------------------------------- PRODUCT STAGES */
+.product-stage{
+  display:flex;align-items:center;justify-content:center;
+  height:236px;
+  margin:calc(-1 * clamp(24px,2.6vw,32px)) calc(-1 * clamp(24px,2.6vw,32px)) 0;
+  padding:clamp(26px,3.4vw,38px) clamp(24px,3vw,34px);
+  background:
+    radial-gradient(120% 100% at 50% 0%,var(--surface-3),transparent 72%),
+    var(--surface-1);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.product-stage>*{
+  transform:rotate(-6deg) scale(.94);
+  transition:transform var(--d-med) var(--spring-spatial);
+}
+.card--hover:hover .product-stage>*{transform:rotate(-3deg) scale(1)}
+.product-stage .rcard{width:min(100%,196px)}
+.product-stage .rcard-stand{width:min(100%,178px)}
+.product-stage .rcard--sticker{width:min(100%,168px)}
+
+
+/* -------------------------------------------------------------- CTA PANEL */
+.cta-panel{
+  position:relative;
+  border-radius:var(--r-2xl);
+  overflow:hidden;
+  background:var(--gradient-gemini);
+  isolation:isolate;
+}
+.cta-panel__aura{
+  position:absolute;inset:-40% -10%;
+  background:
+    radial-gradient(38% 46% at 22% 26%,rgba(255,255,255,.42),transparent 62%),
+    radial-gradient(34% 40% at 82% 74%,rgba(249,171,0,.42),transparent 64%),
+    radial-gradient(30% 38% at 62% 8%,rgba(52,168,83,.30),transparent 62%);
+  filter:blur(28px);
+  animation:ctaDrift 18s var(--ease-standard) infinite alternate;
+}
+@keyframes ctaDrift{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(-4%,3%,0) scale(1.12)}
+}
+.cta-panel__inner{
+  position:relative;z-index:1;
+  padding:clamp(44px,6.5vw,84px) clamp(24px,5vw,64px);
+  text-align:center;
+}
+.cta-panel__inner .badge .spark{background-color:#fff}
+
+/* ------------------------------------------------------------- PAGE HERO
+   Compact hero used on the interior pages.                                */
+.page-hero{
+  position:relative;
+  padding-top:calc(var(--nav-h) + clamp(48px,6vw,84px));
+  padding-bottom:clamp(40px,5vw,64px);
+}
+.page-hero__inner{max-width:820px;position:relative;z-index:1}
+.page-hero .lead{margin-top:var(--s-6)}
+.breadcrumb{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-size:.85rem;color:var(--text-3);margin-bottom:var(--s-6);
+}
+.breadcrumb a:hover{color:var(--text)}
+.breadcrumb svg{width:14px;height:14px;opacity:.6}
+
+/* ---------------------------------------------------------- MISC HELPERS */
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:var(--r-full);
+  background:var(--surface-2);
+  font-size:.9rem;font-weight:500;color:var(--text-2);
+}
+.pill svg{width:16px;height:16px;flex:none;color:var(--tertiary)}
+
+.kbd-note{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:var(--r-full);
+  background:var(--surface-2);color:var(--text-2);
+  font-size:.85rem;
+}
+
+/* Two-column prose lists used on the deeper pages */
+.prose-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(20px,3vw,36px);
+}
+@media (max-width:720px){.prose-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Numbered device compatibility table */
+.compat{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:.96rem;
+  overflow:hidden;
+  border-radius:var(--r-xl);
+  border:1px solid var(--border);
+}
+.compat th,.compat td{
+  padding:16px 20px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+.compat thead th{
+  background:var(--surface-2);
+  font-family:var(--font-display);
+  font-weight:600;font-size:.88rem;
+  letter-spacing:-.01em;
+  color:var(--text);
+}
+.compat tbody tr:last-child td{border-bottom:none}
+.compat td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+.compat .ok{color:var(--tertiary);font-weight:600}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--s-5);
+}
+.form-grid .field--full{grid-column:1 / -1}
+@media (max-width:620px){.form-grid{grid-template-columns:minmax(0,1fr)}}/* Pricing page comparison strip */
+.price-note{
+  display:flex;gap:13px;align-items:flex-start;
+  padding:20px 24px;
+  border-radius:var(--r-xl);
+  background:var(--surface-2);
+  color:var(--text-2);
+}
+.price-note svg{flex:none;margin-top:2px;width:21px;height:21px;color:var(--primary)}
+
+.addon{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:18px 22px;
+  border-radius:var(--r-lg);
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+.addon+.addon{margin-top:12px}
+.addon b{font-family:var(--font-display);white-space:nowrap}
+@media (max-width:560px){
+  .addon{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ------------------------------------------------------- ANSWER PANEL
+   The single-sentence definition at the top of the NFC guide.            */
+.answer-panel{
+  position:relative;
+  padding:clamp(28px,4vw,52px);
+  border-radius:var(--r-xl-inc);
+  background:var(--surface-1);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.answer-panel::before{
+  content:"";
+  position:absolute;inset:0 auto 0 0;width:5px;
+  background:var(--gradient-gemini);
+}
+.answer-panel__label{
+  display:block;
+  font-size:.775rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:var(--s-5);
+}
+.answer-panel__text{
+  font-family:var(--font-display);
+  font-size:clamp(1.4rem,2.8vw,2.05rem);
+  font-weight:500;line-height:1.32;letter-spacing:-.026em;
+  color:var(--text);
+  text-wrap:balance;
+}
+.answer-panel em{font-style:italic;color:var(--text-2)}
+
+/* ------------------------------------------------------------ DIAGRAM */
+.diagram{
+  width:100%;max-width:470px;
+  padding:clamp(20px,3vw,32px);
+  border-radius:var(--r-xl);
+  background:var(--surface-1);
+  border:1px solid var(--border);
+  color:var(--text-2);
+}
+.diagram svg{width:100%;height:auto}
+
+/* --------------------------------------------------------- DEMO STAGE */
+.demo-stage{
+  display:flex;justify-content:center;
+  padding-block:clamp(12px,3vw,32px);
+}
+.demo-stage .scene{
+  position:relative;
+  width:min(720px,100%);
+  min-height:min(480px,86vw);
+  display:flex;align-items:center;justify-content:center;
+}
+/* Product in front, phone peeking out behind it: the card is near-square now,
+   so a phone on top would cover its headline and QR. */
+.demo-stage__card{
+  position:relative;z-index:4;
+  width:min(400px,58%);
+  margin-right:min(150px,24%);
+}
+.demo-stage__phone{
+  position:absolute;z-index:3;
+  right:6%;bottom:0;
+  width:min(230px,33%);
+  /* query container for the phone's own cqw values — see .hero-stage__phone */
+  container-type:inline-size;
+}
+@media (max-width:620px){
+  .demo-stage__card{width:72%;margin-right:34px}
+  .demo-stage__phone{width:42%;right:-6px;bottom:-2%}
+}
+
+/* ------------------------------------------------------ SPEC LISTS */
+.spec{
+  display:grid;grid-template-columns:auto 1fr;
+  gap:10px 18px;
+  font-size:.95rem;
+}
+.spec dt{color:var(--text-3);white-space:nowrap}
+.spec dd{color:var(--text);font-weight:500}
+
+/* ---------------------------------------------------- PRODUCT DETAIL */
+.product-hero{
+  display:flex;align-items:center;justify-content:center;
+  /* an explicit width breaks the shrink-to-fit cycle: the card inside is
+     width:100%, which contributes no intrinsic width of its own */
+  width:100%;
+  min-height:300px;
+  padding:clamp(32px,5vw,56px);
+  border-radius:var(--r-xl-inc);
+  background:
+    radial-gradient(120% 100% at 50% 0%,var(--surface-3),transparent 74%),
+    var(--surface-1);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.product-hero .scene{width:100%;display:flex;justify-content:center}
+
+/* ------------------------------------------------------------ KEYRING */
+.keyring{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;
+}
+.keyring__ring{
+  width:26px;height:26px;
+  border:3px solid var(--border-strong);
+  border-radius:50%;
+  margin-bottom:-9px;
+  z-index:1;
+}
+.keyring__body{
+  width:112px;height:150px;
+  border-radius:16px;
+  background:linear-gradient(158deg,#4285F4,#1B62DC 60%,#1652C6);
+  box-shadow:0 16px 32px -14px rgba(26,95,217,.55);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;text-align:center;color:#fff;
+  position:relative;overflow:hidden;
+}
+.keyring__body::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(90% 60% at 24% 6%,rgba(255,255,255,.38),transparent 62%);
+}
+.keyring__body::after{
+  content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
+  width:13px;height:13px;border-radius:50%;
+  background:var(--surface-1);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.35);
+}
+.keyring__body>*{position:relative;z-index:1;margin-top:14px}
+.keyring__text{
+  font-family:var(--font-display);
+  font-size:.78rem;font-weight:600;line-height:1.25;letter-spacing:-.014em;
+}
+
+/* --------------------------------------------------------- PHOTO BAND */
+.photo-band__grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(14px,2vw,24px);
+}
+@media (max-width:760px){
+  .photo-band__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .photo-band__grid .photo-card:last-child{display:none}
+}
+@media (max-width:460px){
+  .photo-band__grid{grid-template-columns:minmax(0,1fr)}
+  .photo-band__grid .photo-card:last-child{display:block}
+}
+.photo-card{
+  position:relative;
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:var(--surface-2);
+  box-shadow:var(--e2);
+}
+.photo-card img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform var(--d-long) var(--ease-emph-dec),
+             filter var(--d-base) var(--ease-standard);
+}
+.photo-card:hover img{transform:scale(1.05)}
+.photo-card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(15,16,17,.78) 0%,rgba(15,16,17,.22) 34%,transparent 62%);
+}
+.photo-card figcaption{
+  position:absolute;inset:auto 0 0 0;z-index:1;
+  padding:clamp(18px,2.4vw,26px);
+  display:flex;flex-direction:column;gap:4px;
+  color:#fff;
+}
+.photo-card__kicker{
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);
+}
+.photo-card__title{
+  font-family:var(--font-display);
+  font-size:clamp(1.05rem,1.7vw,1.28rem);
+  font-weight:600;letter-spacing:-.018em;line-height:1.2;
+}.order-form{width:100%}
+
+html,body{background:#EDEFF2;display:grid;place-items:center;min-height:100vh;margin:0}
+.shot{width:900px;display:grid;place-items:center;padding:40px}
+.rcard{max-width:820px !important}
+</style></head><body><div class="shot"><div class="rcard">
+        <div class="rcard__top">
+          <span class="rcard__g" aria-hidden="true">
+            <svg viewBox="0 0 48 48">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.28-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+          </span>
+          <div class="rcard__lead">
+            <p class="rcard__kicker">Αξιολόγησέ μας</p>
+            <p class="rcard__title">στο Google</p>
+            <span class="rcard__stars" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="m12 17.6-6.1 3.5 1.6-6.9-5.3-4.6 7-.6L12 2.4l2.8 6.6 7 .6-5.3 4.6 1.6 6.9z"/></svg>
+            </span>
+          </div>
+          <svg class="rcard__wave" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 18C74 40 150 40 226 24 288 11 344 6 400 12v28H0z" fill="#fff"/>
+          </svg>
+        </div>
+
+        <div class="rcard__body">
+          <div class="rcard__opt">
+            <span class="rcard__cap">Ακούμπησε<br>το κινητό σου</span>
+            <svg class="rcard__tap" viewBox="0 0 150 92" fill="none" aria-hidden="true">
+              <ellipse cx="46" cy="46" rx="42" ry="27" stroke="#1F1F1F" stroke-width="3"/>
+              <g stroke="#1F1F1F" stroke-width="3.6" stroke-linecap="round">
+                <path d="M22 34a15 15 0 0 1 0 24"/>
+                <path d="M32 28a23 23 0 0 1 0 36"/>
+                <path d="M42 22a31 31 0 0 1 0 48"/>
+              </g>
+              <g transform="rotate(-14 110 46)">
+                <rect x="90" y="12" width="40" height="62" rx="9" fill="#fff" stroke="#1F1F1F" stroke-width="3"/>
+                <rect x="105" y="18" width="10" height="2.6" rx="1.3" fill="#1F1F1F"/>
+                <text x="110" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#1F1F1F" font-family="Inter,system-ui,sans-serif">NFC</text>
+              </g>
+            </svg>
+          </div>
+
+          <span class="rcard__or">ή</span>
+
+          <div class="rcard__opt">
+            <span class="rcard__cap">Σκάναρε<br>τον κωδικό</span>
+            <span class="rcard__qrbox">
+              <i></i><i></i>
+              <img class="qr" src="../img/qr.svg" alt="" width="25" height="25">
+            </span>
+          </div>
+        </div>
+      </div></div></body></html>

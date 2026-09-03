@@ -1,0 +1,490 @@
+/* ============================================================================
+   GoogleViews — Mockups
+   Glass NFC cards, phones, stands, live UI props. All pure CSS + inline SVG.
+   ========================================================================= */
+
+/* ------------------------------------------------------------- 1. 3D SCENE */
+.scene{
+  perspective:1500px;
+  perspective-origin:50% 42%;
+  position:relative;
+}
+.scene--flat{perspective:none}
+
+.tilt{
+  transform-style:preserve-3d;
+  transition:transform 900ms var(--ease-emph-dec);
+  will-change:transform;
+}
+.tilt--card{transform:rotateX(14deg) rotateY(-19deg) rotateZ(3deg)}
+.tilt--phone{transform:rotateX(9deg) rotateY(13deg) rotateZ(-2.5deg)}
+.tilt--soft{transform:rotateX(8deg) rotateY(-10deg)}
+
+@keyframes floatY{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+@keyframes floatY-sm{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+.float{animation:floatY 7s var(--ease-standard) infinite}
+.float--slow{animation:floatY 9.5s var(--ease-standard) infinite}
+.float--sm{animation:floatY-sm 6s var(--ease-standard) infinite}
+.float--delay{animation-delay:-3.2s}
+
+/* -------------------------------------------------------- 3. THE NFC WAVES */
+.nfc-wave{
+  width:34px;height:34px;flex:none;
+  position:relative;color:currentColor;
+}
+.nfc-wave svg{width:100%;height:100%;overflow:visible}
+.nfc-wave .arc{
+  fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;
+  opacity:.32;
+  transform-origin:14% 50%;
+}
+.nfc-wave .arc--1{animation:arcPulse 2.1s var(--ease-standard) infinite}
+.nfc-wave .arc--2{animation:arcPulse 2.1s var(--ease-standard) .26s infinite}
+.nfc-wave .arc--3{animation:arcPulse 2.1s var(--ease-standard) .52s infinite}
+@keyframes arcPulse{
+  0%{opacity:.18;transform:scale(.9)}
+  38%{opacity:1;transform:scale(1)}
+  100%{opacity:.18;transform:scale(.9)}
+}
+
+/* ----------------------------------------------------------- 4. THE PHONE
+   Every dimension inside the phone is expressed in cqw, so the whole mock-up
+   scales cleanly from a 120px thumbnail to a 300px hero without the screen
+   content overflowing its own frame. Reference width: 288px (1cqw = 2.88px).
+   ------------------------------------------------------------------------ */
+.phone{
+  container-type:inline-size;
+  position:relative;
+  width:100%;
+  max-width:288px;
+  aspect-ratio:1/2.03;
+  border-radius:15.3cqw;
+  padding:3.8cqw;
+  background:linear-gradient(158deg,#3A3D40 0%,#141516 26%,#26282A 52%,#0E0F10 78%,#37393C 100%);
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,.10) inset,
+    0 2px 3px rgba(0,0,0,.30),
+    0 34px 60px -22px rgba(27,28,29,.48),
+    0 70px 100px -60px rgba(27,28,29,.4);
+  flex:none;
+  transform-style:preserve-3d;
+}.phone::before{  /* power button */
+  content:"";position:absolute;right:-2px;top:23%;width:2.5px;height:8%;
+  border-radius:2px;background:linear-gradient(180deg,#4A4D50,#2A2C2E);
+}
+.phone::after{   /* volume rocker */
+  content:"";position:absolute;left:-2px;top:19%;width:2.5px;height:5%;
+  border-radius:2px;background:linear-gradient(180deg,#4A4D50,#2A2C2E);
+  box-shadow:0 14cqw 0 #3A3D40;
+}
+.phone__screen{
+  position:relative;
+  width:100%;height:100%;
+  border-radius:11.8cqw;
+  overflow:hidden;
+  background:var(--surface);
+  display:flex;flex-direction:column;
+}
+.phone__notch{
+  position:absolute;top:3.1cqw;left:50%;transform:translateX(-50%);
+  width:9cqw;height:9cqw;border-radius:50%;
+  background:#0B0C0D;z-index:6;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.phone__notch::after{
+  content:"";position:absolute;inset:2.4cqw;border-radius:50%;
+  background:radial-gradient(circle at 35% 32%,#2C4A6B,#0D1620 62%);
+}
+.phone__statusbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:4.5cqw 6.9cqw 1.4cqw;
+  font-size:3.67cqw;font-weight:600;color:var(--text);
+  line-height:1.2;flex:none;
+}
+.phone__statusbar .sb-icons{display:flex;gap:1.4cqw;align-items:center;opacity:.85}
+.phone__statusbar svg{width:4.2cqw;height:4.2cqw;fill:currentColor}
+.phone__home{
+  position:absolute;bottom:2.4cqw;left:50%;transform:translateX(-50%);
+  width:34%;height:1.4cqw;border-radius:1cqw;background:var(--text);opacity:.28;z-index:6;
+}
+
+/* --------------------------------------------- 5. GOOGLE REVIEW SHEET (UI) */
+.gsheet{
+  flex:1;min-height:0;
+  padding:4.9cqw 5.9cqw 9cqw;
+  display:flex;flex-direction:column;
+  background:var(--surface);
+}
+.gsheet__bar{
+  display:flex;align-items:center;gap:3.1cqw;
+  padding:2.8cqw 4.2cqw;
+  border-radius:var(--r-full);
+  background:var(--surface-3);
+  margin-bottom:5.6cqw;flex:none;
+}
+.gsheet__bar svg{width:4.9cqw;height:4.9cqw;flex:none;color:var(--text-3)}
+.gsheet__bar span{
+  font-size:3.7cqw;line-height:1.3;color:var(--text-3);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.gsheet__biz{display:flex;align-items:center;gap:3.8cqw;flex:none}
+.gsheet__avatar{
+  width:14.6cqw;height:14.6cqw;flex:none;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--gradient-google);
+  color:#fff;font-family:var(--font-display);
+  font-weight:600;font-size:5.8cqw;
+}
+.gsheet__name{
+  font-family:var(--font-display);
+  font-size:4.6cqw;font-weight:600;letter-spacing:-.015em;color:var(--text);
+  line-height:1.25;
+}
+.gsheet__name + p{font-size:3.7cqw;line-height:1.3;color:var(--text-3);margin-top:.7cqw}
+.gsheet__prompt{
+  margin:6.25cqw 0 4.2cqw;
+  font-family:var(--font-display);
+  font-size:5cqw;font-weight:600;letter-spacing:-.018em;color:var(--text);
+  line-height:1.25;text-align:center;flex:none;
+}
+.gsheet__stars{
+  display:flex;justify-content:center;gap:2.4cqw;flex:none;margin-bottom:5.6cqw;
+}
+.gsheet__stars svg{width:9cqw;height:9cqw;fill:var(--surface-4);transition:fill 260ms var(--ease-standard)}
+.gsheet__stars svg.on{fill:#FBBC04}
+.gsheet.is-rated .gsheet__stars svg{animation:starPop 500ms var(--spring-spatial) backwards}
+.gsheet.is-rated .gsheet__stars svg:nth-child(1){animation-delay:.05s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(2){animation-delay:.14s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(3){animation-delay:.23s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(4){animation-delay:.32s}
+.gsheet.is-rated .gsheet__stars svg:nth-child(5){animation-delay:.41s}
+@keyframes starPop{
+  0%{transform:scale(.4) rotate(-24deg);opacity:.2}
+  60%{transform:scale(1.22) rotate(6deg);opacity:1}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+.gsheet__input{
+  flex:1;min-height:19.4cqw;
+  border-radius:4.9cqw;
+  border:1.5px solid var(--border);
+  background:var(--surface-2);
+  padding:3.8cqw 4.5cqw;
+  font-size:3.9cqw;line-height:1.5;color:var(--text-2);
+  overflow:hidden;
+}
+.gsheet__caret{
+  display:inline-block;width:1.5px;height:.86em;
+  background:var(--g-blue);vertical-align:-1px;
+  animation:caretBlink 1.05s steps(1) infinite;
+}
+@keyframes caretBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.gsheet__chips{display:flex;gap:2.1cqw;flex-wrap:wrap;margin-top:3.8cqw;flex:none}
+.gsheet__chip{
+  padding:1.7cqw 3.5cqw;border-radius:var(--r-full);
+  background:var(--surface-3);
+  font-size:3.4cqw;line-height:1.35;font-weight:500;color:var(--text-2);white-space:nowrap;
+}
+.gsheet__post{
+  margin-top:4.9cqw;flex:none;
+  height:13.2cqw;border-radius:var(--r-full);
+  display:grid;place-items:center;
+  background:var(--g-blue);color:#fff;
+  font-family:var(--font-display);
+  font-size:4.4cqw;font-weight:600;letter-spacing:-.01em;
+}/* --------------------------------------------------------- 9. HERO STAGING */
+.hero-stage{
+  position:relative;
+  /* the floating props are gone, so the stage no longer needs their headroom */
+  min-height:min(478px,64vw);
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-stage__card{
+  position:relative;
+  z-index:4;
+  width:min(344px,74%);
+  margin-right:min(170px,30%);
+}
+.hero-stage__phone{
+  position:absolute;
+  right:0;bottom:-2%;
+  z-index:3;
+  width:min(206px,39%);
+  /* An element can't be its own query container, so the phone's OWN cqw
+     values (padding, radius) resolve against this wrapper. Its descendants
+     resolve against .phone. Both end up sized to the phone's real width. */
+  container-type:inline-size;
+}
+.hero-stage__glow{
+  position:absolute;
+  width:120%;height:120%;
+  left:-10%;top:-10%;
+  background:radial-gradient(circle at 42% 46%,rgba(155,114,203,.30),transparent 62%);
+  filter:blur(46px);
+  z-index:0;pointer-events:none;
+}
+@media (max-width:1040px){
+  .hero-stage{min-height:0;padding-block:24px}
+  .hero-stage__card{margin-right:min(72px,14%)}
+}
+@media (max-width:520px){
+  /* the phone is tall — give the stage room or it climbs into the copy above,
+     and keep the card's text clear of where the phone overlaps it */
+  .hero-stage{min-height:392px;align-items:flex-end}
+  .hero-stage__card{width:74%;margin-right:24px}
+  .hero-stage__phone{width:40%;right:-10px;bottom:-2%}
+  .tilt--card{transform:rotateX(10deg) rotateY(-13deg) rotateZ(2deg)}
+  .tilt--phone{transform:rotateX(6deg) rotateY(9deg) rotateZ(-2deg)}
+  .nfc-card{padding:18px 19px;border-radius:17px}
+  .nfc-card__cta{font-size:1.12rem}
+  .nfc-card__sub{font-size:.72rem;margin-top:5px}
+  .nfc-card__brand img{height:21px}
+  .nfc-card__brand span{font-size:.84rem}
+  .nfc-card__stars svg{width:13px;height:13px}
+  .nfc-card__stars{margin-bottom:7px}
+  .nfc-card__chip{width:32px;height:24px}
+}
+
+/* -------------------------------------------------- 10. COMPARISON VISUAL */
+.versus{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:clamp(14px,2.4vw,28px);
+  align-items:stretch;
+}
+@media (max-width:760px){
+  .versus{grid-template-columns:1fr;gap:14px}
+  .versus__mid{transform:rotate(90deg);justify-self:center}
+}
+.versus__mid{
+  align-self:center;
+  width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--surface);border:1px solid var(--border);
+  box-shadow:var(--e2);
+  font-family:var(--font-display);font-weight:600;font-size:.82rem;color:var(--text-3);
+}
+.versus__col{
+  padding:clamp(20px,2.6vw,30px);
+  border-radius:var(--r-xl);
+  border:1px solid var(--border);
+  background:var(--surface);
+}
+.versus__col--bad{background:var(--surface-2)}
+.versus__col--good{
+  border-color:transparent;
+  background:var(--surface);
+  box-shadow:var(--e3);
+  position:relative;
+}
+.versus__label{
+  font-size:.755rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:16px;
+}
+.versus__col--good .versus__label{
+  background:var(--gradient-gemini);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ---------------------------------------------------- 11. TIMELINE / FLOW */
+.flow{position:relative;display:flex;flex-direction:column;gap:0}
+.flow__item{
+  position:relative;
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:clamp(16px,2.4vw,28px);
+  padding-bottom:clamp(28px,3.6vw,44px);
+}
+.flow__item:last-child{padding-bottom:0}
+.flow__item::before{
+  content:"";position:absolute;left:25px;top:52px;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--border-strong),var(--border));
+}
+.flow__item:last-child::before{display:none}
+.flow__dot{
+  width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--surface);
+  border:1px solid var(--border);
+  box-shadow:var(--e2);
+  font-family:var(--font-display);font-weight:600;color:var(--text);
+  position:relative;z-index:1;
+}
+.flow__item--active .flow__dot{
+  background:var(--gradient-gemini);color:#fff;border-color:transparent;
+  box-shadow:0 6px 18px -6px rgba(66,133,244,.6);
+}
+@media (max-width:560px){
+  .flow__item{grid-template-columns:44px 1fr}
+  .flow__dot{width:44px;height:44px;font-size:.9rem}
+  .flow__item::before{left:21px;top:44px}
+}
+
+/* ------------------------------------------------------- 12. PRICE TABLES */
+.price{
+  position:relative;
+  display:flex;flex-direction:column;
+  padding:clamp(26px,3vw,36px);
+  border-radius:var(--r-xl);
+  border:1px solid var(--border);
+  background:var(--surface);
+  box-shadow:var(--shadow-card);
+  transition:transform var(--d-base) var(--ease-emph-dec),box-shadow var(--d-base) var(--ease-standard);
+}
+.price:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover)}
+.price--featured{
+  border-color:transparent;
+  box-shadow:var(--shadow-card-hover);
+}
+.price--featured::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;
+  background:var(--gradient-gemini);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  pointer-events:none;
+}
+.price__tag{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  white-space:nowrap;
+}
+.price__name{font-family:var(--font-display);font-size:1.2rem;font-weight:600;letter-spacing:-.022em}
+.price__desc{margin-top:8px;color:var(--text-2);font-size:.93rem;line-height:1.55;min-height:2.9em}
+.price__amount{
+  margin-top:22px;display:flex;align-items:baseline;gap:4px;
+  font-family:var(--font-display);
+}
+.price__amount b{font-size:2.9rem;font-weight:600;letter-spacing:-.04em;line-height:1}
+.price__amount span{font-size:.95rem;color:var(--text-3);font-weight:500}
+.price__unit{margin-top:6px;font-size:.83rem;color:var(--text-3)}
+.price .checklist{margin-top:26px;flex:1}
+.price .btn{margin-top:28px}
+/* ============================================================================
+   13. THE REVIEW CARD — the actual product
+   A printed CR80 card stood on its short edge: contactless arcs, the Google
+   mark, five stars, "Review us on Google". Made in black and in white.
+   Colours are literal, not tokens: this is a physical printed object, so it
+   must look the same whatever the page around it is doing.
+   Everything inside scales in cqw off the card's own width.
+   ========================================================================= */
+.rcard{
+  container-type:inline-size;
+  position:relative;
+  width:100%;
+  max-width:302px;
+  aspect-ratio:54/86;               /* CR80, portrait */
+  border-radius:8.5% / 5.4%;        /* equal radii once the ratio is applied */
+  overflow:hidden;
+  background:linear-gradient(158deg,#2E323D 0%,#24272F 46%,#1A1D24 100%);
+  color:#fff;
+  box-shadow:
+    0 2px 4px rgba(27,28,29,.14),
+    0 26px 52px -20px rgba(27,28,29,.42),
+    0 60px 90px -55px rgba(27,28,29,.55);
+  transform-style:preserve-3d;
+  isolation:isolate;
+}
+.rcard::before{                     /* printed sheen */
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(78% 52% at 22% 0%,rgba(255,255,255,.10),transparent 66%);
+}
+/* An element can't be its own query container, so the padding and the stack
+   live on an inner layer: there, cqw resolves against .rcard's width. Put
+   them on .rcard itself and they resolve against the viewport instead. */
+.rcard__face{
+  position:relative;z-index:1;
+  height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:10cqw 8cqw 9cqw;
+}
+
+.rcard__nfc{width:26cqw;height:auto;flex:none}
+
+.rcard__g{width:46cqw;flex:none;display:block;margin-top:9cqw}
+.rcard__g svg{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 .5cqw 1.2cqw rgba(0,0,0,.30))}
+
+.rcard__stars{display:flex;gap:1.4cqw;margin-top:11cqw}
+.rcard__stars svg{width:6.8cqw;height:6.8cqw;fill:#FBBC04;
+  filter:drop-shadow(0 .3cqw .6cqw rgba(0,0,0,.3))}
+
+.rcard__cta{
+  margin-top:4cqw;
+  font-family:var(--font-display);
+  font-size:13cqw;line-height:1.12;font-weight:400;letter-spacing:-.02em;
+  text-align:center;
+}
+.rcard__gw i{font-style:normal}
+.rcard__gw i:nth-child(1){color:#4285F4}
+.rcard__gw i:nth-child(2){color:#EA4335}
+.rcard__gw i:nth-child(3){color:#FBBC05}
+.rcard__gw i:nth-child(4){color:#4285F4}
+.rcard__gw i:nth-child(5){color:#34A853}
+.rcard__gw i:nth-child(6){color:#EA4335}
+
+/* --- the same card printed on white -------------------------------------- */
+.rcard--light{
+  background:linear-gradient(158deg,#FFFFFF 0%,#F6F7F9 52%,#E9ECF1 100%);
+  color:#202124;
+  box-shadow:
+    inset 0 0 0 1px rgba(27,28,29,.09),
+    0 2px 4px rgba(27,28,29,.10),
+    0 26px 52px -20px rgba(27,28,29,.26),
+    0 60px 90px -55px rgba(27,28,29,.40);
+}
+.rcard--light::before{
+  background:radial-gradient(78% 52% at 22% 0%,rgba(255,255,255,.92),transparent 66%);
+}
+.rcard--light .rcard__g svg{filter:drop-shadow(0 .5cqw 1.2cqw rgba(27,28,29,.14))}
+.rcard--light .rcard__stars svg{filter:none}
+
+/* --- the pair, the way the shop photographs them -------------------------- */
+.rcard-duo{position:relative;width:100%}
+.rcard-duo .rcard{max-width:none;width:100%}
+.rcard-duo__back{
+  position:absolute;left:0;top:7%;width:68%;z-index:1;
+  transform:rotate(-8deg);
+}
+.rcard-duo__front{
+  position:relative;margin-left:32%;width:68%;z-index:2;
+  transform:rotate(3.5deg);
+}
+
+/* --- variants ------------------------------------------------------------ */
+/* the square adhesive sticker: same artwork, die-cut white margin.
+   A square has far less height per unit of width, so the contents step down.
+   The ring is a child of .rcard, so its cqw resolves against the card. */
+.rcard--sticker{aspect-ratio:1/1;border-radius:11% / 11%}
+.rcard--sticker .rcard__face{padding:7cqw}
+.rcard--sticker::after{
+  content:"";position:absolute;inset:0;z-index:6;pointer-events:none;
+  border:2.4cqw solid #fff;
+  border-radius:inherit;
+}
+.rcard--sticker .rcard__nfc{width:18cqw}
+.rcard--sticker .rcard__g{width:30cqw;margin-top:5cqw}
+.rcard--sticker .rcard__stars{margin-top:6cqw;gap:1cqw}
+.rcard--sticker .rcard__stars svg{width:4.8cqw;height:4.8cqw}
+.rcard--sticker .rcard__cta{margin-top:2.6cqw;font-size:9cqw}
+
+/* on the tabletop stand the card sits above a base */
+.rcard-stand{
+  container-type:inline-size;
+  display:flex;flex-direction:column;align-items:center;
+  width:100%;max-width:302px;margin-inline:auto;
+}
+.rcard-stand .rcard{border-radius:8.5% 8.5% 2.6% 2.6% / 5.4% 5.4% 1.7% 1.7%}
+.rcard-stand__base{
+  position:relative;
+  width:62%;height:5.2cqw;min-height:13px;
+  border-radius:0 0 3cqw 3cqw;
+  background:linear-gradient(180deg,#C7CED8 0%,#EDF0F4 24%,#AEB6C1 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),
+             0 1.4cqw 2.6cqw -1cqw rgba(27,28,29,.5);
+}
