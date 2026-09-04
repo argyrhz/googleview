@@ -240,35 +240,48 @@
         if (first) first.focus();
         return;
       }
-      // No backend wired up yet — hand the order to the user's mail client.
+      // The order goes to /api/lead, which writes it to the database. The
+      // visitor's own mail client is no longer involved: it used to be the
+      // only "delivery" and it recorded nothing anywhere.
       var get = function (n) {
         var el = form.querySelector('[name="' + n + '"]');
         return el ? el.value.trim() : '';
       };
-      var body = [
-        'Όνομα: ' + get('name'),
-        'Επιχείρηση: ' + get('business'),
-        'Πόλη: ' + get('city'),
-        'Email: ' + get('email'),
-        'Τηλέφωνο: ' + get('phone'),
-        'Πακέτο: ' + get('package'),
-        'Θέλει εγκατάσταση καρτών Google review.',
-        '',
-        'Μήνυμα:',
-        get('message')
-      ].join('\n');
 
-      var mailto = 'mailto:' + form.getAttribute('data-mailto') +
-        '?subject=' + encodeURIComponent('Νέα παραγγελία από ' + get('business')) +
-        '&body=' + encodeURIComponent(body);
+      var btn = form.querySelector('button[type="submit"]');
+      var btnHTML = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Στέλνεται…'; }
 
-      form.hidden = true;
-      if (success) {
-        success.classList.add('is-visible');
-        success.setAttribute('tabindex', '-1');
-        success.focus();
+      var fail = form.querySelector('[data-form-fail]');
+      if (!fail) {
+        fail = document.createElement('p');
+        fail.setAttribute('data-form-fail', '');
+        fail.setAttribute('role', 'alert');
+        fail.style.cssText = 'margin-top:14px;color:#C5221F;font-weight:500';
+        (btn && btn.parentNode ? btn.parentNode : form).appendChild(fail);
       }
-      window.location.href = mailto;
+      fail.textContent = '';
+
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: get('name'), business: get('business'), phone: get('phone'),
+          email: get('email'), city: get('city'), package: get('package'),
+          message: get('message'), website: get('website')
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error(res.status);
+        form.hidden = true;
+        if (success) {
+          success.classList.add('is-visible');
+          success.setAttribute('tabindex', '-1');
+          success.focus();
+        }
+      })['catch'](function () {
+        if (btn) { btn.disabled = false; btn.innerHTML = btnHTML; }
+        fail.textContent = 'Δεν στάλθηκε η παραγγελία. Δοκίμασε ξανά σε λίγο, ή πάρε μας τηλέφωνο.';
+      });
     });
   }
 

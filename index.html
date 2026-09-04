@@ -587,6 +587,13 @@
     <div class="card card--pad-lg order-form reveal" style="--reveal-delay:200ms">
       <form class="form-grid" data-contact-form data-mailto="info@googleviews.gr" novalidate>
 
+        <!-- Bots fill this in, people never see it. api/lead drops anything
+             that arrives with it set. -->
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+          <label for="f-website">Μην το συμπληρώσεις</label>
+          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
         <div class="field">
           <label for="f-name">Το όνομά σου</label>
           <input id="f-name" name="name" type="text" autocomplete="name" placeholder="π.χ. Γιώργος Παπαδάκης" required>
@@ -647,11 +654,11 @@
       <div class="form-success" role="status">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg>
         <div>
-          <h3 class="h4">Άνοιξε το πρόγραμμα email σου</h3>
+          <h3 class="h4">Λάβαμε την παραγγελία σου</h3>
           <p class="body-lg" style="margin-top:6px">
-            Ετοιμάσαμε την παραγγελία με τα στοιχεία σου. Πάτα «Αποστολή» εκεί
-            και θα σε καλέσουμε για την εγκατάσταση. Αν δεν άνοιξε τίποτα, γράψε
-            μας απευθείας στο <a href="mailto:info@googleviews.gr">info@googleviews.gr</a>.
+            Θα σε καλέσουμε στο τηλέφωνο που μας έδωσες για να κανονίσουμε
+            την εγκατάσταση. Αν βιάζεσαι, γράψε μας στο
+            <a href="mailto:info@googleviews.gr">info@googleviews.gr</a>.
           </p>
         </div>
       </div>

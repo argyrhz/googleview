@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Παραγγελίες — GoogleViews</title>
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<style>
+  :root{
+    --blue:#1A73E8; --ink:#1F1F1F; --grey:#5F6368; --faint:#80868B;
+    --line:#DDE3EA; --bg:#F8FAFD; --card:#FFFFFF; --green:#0B8043;
+    --font:"Google Sans Text","Google Sans",Inter,Roboto,system-ui,sans-serif;
+    --font-display:"Google Sans","Google Sans Display",Inter,Roboto,system-ui,sans-serif;
+    --r:16px; --shadow:0 1px 2px rgba(31,31,31,.05),0 4px 14px -4px rgba(31,31,31,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);
+       font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue)}
+  .wrap{max-width:940px;margin:0 auto;padding:24px 18px 80px}
+
+  /* ---------------------------------------------------------------- gate */
+  .gate{min-height:100dvh;display:grid;place-items:center;padding:24px}
+  .gate__box{width:100%;max-width:390px;background:var(--card);border:1px solid var(--line);
+    border-radius:22px;box-shadow:var(--shadow);padding:34px 30px}
+  .mark{font-family:var(--font-display);font-size:1.32rem;font-weight:600;letter-spacing:-.02em}
+  .mark i{font-style:normal;color:var(--blue)}
+  .gate h1{font-family:var(--font-display);font-size:1.28rem;font-weight:600;
+    letter-spacing:-.02em;margin:20px 0 4px}
+  .gate p{margin:0 0 20px;color:var(--grey);font-size:.93rem}
+  label{display:block;font-size:.83rem;font-weight:500;color:var(--grey);margin-bottom:7px}
+  input[type=password],input[type=search]{
+    width:100%;padding:12px 14px;font:inherit;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:12px;outline:none}
+  input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,115,232,.16)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 20px;font:inherit;font-weight:600;border:0;border-radius:999px;
+    background:var(--blue);color:#fff;cursor:pointer;white-space:nowrap}
+  .btn:disabled{opacity:.55;cursor:default}
+  .btn--ghost{background:#fff;color:var(--ink);border:1px solid var(--line);font-weight:500}
+  .gate .btn{width:100%;margin-top:16px;padding:13px}
+  .err{margin-top:12px;color:#C5221F;font-size:.88rem;min-height:1.2em}
+
+  /* --------------------------------------------------------------- board */
+  .top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+    padding:4px 0 18px;border-bottom:1px solid var(--line);margin-bottom:20px}
+  .top h1{font-family:var(--font-display);font-size:1.34rem;font-weight:600;
+    letter-spacing:-.02em;margin:0;flex:1 1 auto}
+  .count{display:inline-block;padding:3px 11px;border-radius:999px;
+    background:#E8F0FE;color:#1558B0;font-size:.8rem;font-weight:600;margin-left:8px}
+  .tools{display:flex;gap:10px;flex:1 1 100%;margin-top:4px}
+  .tools input{flex:1}
+
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:18px 20px;margin-bottom:12px}
+  .lead__head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+  .lead__biz{font-family:var(--font-display);font-size:1.06rem;font-weight:600;
+    letter-spacing:-.015em;margin:0;flex:1 1 auto}
+  .lead__when{color:var(--faint);font-size:.8rem;white-space:nowrap}
+  .lead__pkg{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;
+    background:#F0F4F9;color:var(--grey);font-size:.78rem;font-weight:500}
+  .rows{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:7px 16px;font-size:.92rem}
+  .rows dt{color:var(--faint);font-size:.82rem}
+  .rows dd{margin:0;word-break:break-word}
+  .msg{margin-top:14px;padding:12px 14px;background:#F8FAFD;border-radius:10px;
+    color:var(--grey);font-size:.9rem;white-space:pre-wrap}
+  .empty{text-align:center;padding:64px 20px;color:var(--grey)}
+  .empty b{display:block;font-family:var(--font-display);font-size:1.1rem;
+    font-weight:600;color:var(--ink);margin-bottom:6px}
+  [hidden]{display:none!important}
+  @media(max-width:520px){
+    .rows{grid-template-columns:1fr;gap:2px}
+    .rows dt{margin-top:8px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ------------------------------------------------------------- the gate -->
+<div class="gate" id="gate">
+  <div class="gate__box">
+    <div class="mark">Google<i>Views</i></div>
+    <h1>Παραγγελίες</h1>
+    <p>Ιδιωτική σελίδα. Βάλε τον κωδικό για να δεις ποιος συμπλήρωσε τη φόρμα.</p>
+    <form id="login">
+      <label for="pw">Κωδικός</label>
+      <input id="pw" type="password" autocomplete="current-password" required autofocus>
+      <button class="btn" type="submit" id="go">Είσοδος</button>
+      <p class="err" id="loginErr" role="alert"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------ the board -->
+<div class="wrap" id="board" hidden>
+  <div class="top">
+    <h1>Παραγγελίες <span class="count" id="count">0</span></h1>
+    <button class="btn btn--ghost" id="csv" type="button">Excel</button>
+    <button class="btn btn--ghost" id="refresh" type="button">Ανανέωση</button>
+    <button class="btn btn--ghost" id="out" type="button">Έξοδος</button>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Αναζήτηση σε όνομα, επιχείρηση, τηλέφωνο, πόλη…">
+    </div>
+  </div>
+  <div id="list"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'gv_admin_key';
+  var gate = document.getElementById('gate');
+  var board = document.getElementById('board');
+  var list = document.getElementById('list');
+  var errEl = document.getElementById('loginErr');
+  var qEl = document.getElementById('q');
+  var goBtn = document.getElementById('go');
+  var all = [];
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function when(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return d.toLocaleString('el-GR', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+  }
+
+  function render(rows) {
+    document.getElementById('count').textContent = rows.length;
+    if (!rows.length) {
+      list.innerHTML = '<div class="empty"><b>Καμία παραγγελία ακόμα.</b>' +
+        'Μόλις κάποιος συμπληρώσει τη φόρμα, θα εμφανιστεί εδώ.</div>';
+      return;
+    }
+    list.innerHTML = rows.map(function (r) {
+      var tel = String(r.phone || '').replace(/[^\d+]/g, '');
+      return '<article class="lead">' +
+        '<div class="lead__head">' +
+          '<h2 class="lead__biz">' + esc(r.business) + '</h2>' +
+          '<span class="lead__when">' + esc(when(r.created_at)) + '</span>' +
+        '</div>' +
+        (r.package ? '<span class="lead__pkg">' + esc(r.package) + '</span>' : '') +
+        '<dl class="rows">' +
+          '<dt>Όνομα</dt><dd>' + esc(r.name) + '</dd>' +
+          '<dt>Τηλέφωνο</dt><dd><a href="tel:' + esc(tel) + '">' + esc(r.phone) + '</a></dd>' +
+          '<dt>Email</dt><dd><a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a></dd>' +
+          (r.city ? '<dt>Πόλη</dt><dd>' + esc(r.city) + '</dd>' : '') +
+        '</dl>' +
+        (r.message ? '<div class="msg">' + esc(r.message) + '</div>' : '') +
+      '</article>';
+    }).join('');
+  }
+
+  function filter() {
+    var q = qEl.value.trim().toLowerCase();
+    if (!q) return render(all);
+    render(all.filter(function (r) {
+      return ['business', 'name', 'phone', 'email', 'city', 'package', 'message']
+        .some(function (k) { return String(r[k] || '').toLowerCase().indexOf(q) > -1; });
+    }));
+  }
+
+  function load(key) {
+    return fetch('/api/leads', { headers: { 'x-admin-key': key } })
+      .then(function (r) {
+        if (r.status === 401) throw new Error('auth');
+        if (!r.ok) throw new Error('server');
+        return r.json();
+      })
+      .then(function (d) { all = d.rows || []; filter(); });
+  }
+
+  function open(key) {
+    sessionStorage.setItem(KEY, key);
+    gate.hidden = true;
+    board.hidden = false;
+  }
+
+  function lock(msg) {
+    sessionStorage.removeItem(KEY);
+    gate.hidden = false;
+    board.hidden = true;
+    errEl.textContent = msg || '';
+  }
+
+  document.getElementById('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var key = document.getElementById('pw').value;
+    errEl.textContent = '';
+    goBtn.disabled = true;
+    goBtn.textContent = 'Έλεγχος…';
+    load(key)
+      .then(function () { open(key); })
+      .catch(function (err) {
+        errEl.textContent = err.message === 'auth'
+          ? 'Λάθος κωδικός.'
+          : 'Κάτι πήγε στραβά. Δοκίμασε ξανά σε λίγο.';
+      })
+      .then(function () {
+        goBtn.disabled = false;
+        goBtn.textContent = 'Είσοδος';
+      });
+  });
+
+  document.getElementById('refresh').addEventListener('click', function () {
+    load(sessionStorage.getItem(KEY)).catch(function () { lock('Η σύνδεση έληξε.'); });
+  });
+
+  document.getElementById('out').addEventListener('click', function () {
+    document.getElementById('pw').value = '';
+    lock('');
+  });
+
+  qEl.addEventListener('input', filter);
+
+  document.getElementById('csv').addEventListener('click', function () {
+    var cols = ['created_at', 'business', 'name', 'phone', 'email', 'city', 'package', 'message'];
+    var head = ['Ημερομηνία', 'Επιχείρηση', 'Όνομα', 'Τηλέφωνο', 'Email', 'Πόλη', 'Πακέτο', 'Μήνυμα'];
+    var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
+    var body = all.map(function (r) {
+      return cols.map(function (c) {
+        return q(c === 'created_at' ? when(r[c]) : r[c]);
+      }).join(';');
+    });
+    // BOM so Excel opens the Greek correctly; ';' because el-GR Excel splits on it
+    var blob = new Blob(['﻿' + [head.map(q).join(';')].concat(body).join('\r\n')],
+                        { type: 'text/csv;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'googleviews-paraggelies.csv';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+  });
+
+  // Come back to the tab without retyping, but only for this browser session.
+  var saved = sessionStorage.getItem(KEY);
+  if (saved) {
+    load(saved).then(function () { open(saved); }).catch(function () { lock(''); });
+  }
+})();
+</script>
+</body>
+</html>

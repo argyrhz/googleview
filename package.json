@@ -1,0 +1,9 @@
+{
+  "name": "googleviews",
+  "private": true,
+  "type": "module",
+  "description": "Static site. The only JavaScript that runs on a server is api/, which stores and reads the order form.",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0"
+  }
+}
