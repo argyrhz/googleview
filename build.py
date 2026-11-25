@@ -13,8 +13,8 @@ import os
 
 SITE = "https://googleviews.gr"
 EMAIL = "info@googleviews.gr"
-PHONE_HREF = "+306900000000"
-PHONE_TEXT = "+30 690 000 0000"
+PHONE_HREF = "+306988749201"
+PHONE_TEXT = "+30 698 874 9201"
 
 # slug -> (nav label, <title>, meta description, nav key)
 PAGES = {
